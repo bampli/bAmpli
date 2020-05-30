@@ -117,7 +117,7 @@ EOF
 #   - storage.backend: berkeleyje
 #   - index.search.backend: lucene
 #
-helm install graph ./janusgraph
+helm install janus ./janusgraph
 
 export POD_NAME=$(kubectl get pods --namespace default -l "app=janusgraph,release=janus" -o jsonpath="{.items[0].metadata.name}")
 
