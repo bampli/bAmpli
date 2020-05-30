@@ -42,7 +42,6 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 
 - Open a browser and authenticate with $TOKEN
 
-    # Available at:
     http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
     
     TOKEN=$(multipass exec node1 -- /bin/bash -c "sudo cat /var/lib/rancher/k3s/server/node-token")
