@@ -35,7 +35,6 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
     # Launch a client, for Windows10 tweak MSYS_NO_PATHCONV
     export MSYS_NO_PATHCONV=1
     kubectl exec -it $POD_NAME -- /janusgraph-0.2.0-hadoop2/bin/gremlin.sh
-    #export MSYS_NO_PATHCONV=0
 ```
 
 ## Dashboard
