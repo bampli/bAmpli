@@ -8,6 +8,7 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 - Multipass
 - Helm
 - Kubectl
+- Git
 
 ## Launch 4-node K3S cluster
 
@@ -18,7 +19,13 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 - Prometheus
 - JanusGraph
 
-## Launch a Gremlin client
+## Get started
+
+    git clone https://github.com/bampli/bampli.git
+    cd bampli
+    ./k3s-setup.sh
+
+## Gremlin client is launched at end
 
     # JanusGraph is running at pod POD_NAME, shown by command below:
     # kubectl get pods --namespace default -l "app=janusgraph,release=janus" -o jsonpath="{.items[0].metadata.name}"
@@ -42,5 +49,5 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 
 ## Prometheus
 
-Open browser at $IP shown above
-
+    # Open browser at $IP
+    IP=$(multipass info node1 | grep IPv4 | awk '{print $2}')
