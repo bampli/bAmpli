@@ -36,13 +36,15 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 
 ## Dashboard
 
+- Open a terminal and run kubectl proxy:
+    kubectl proxy
+
+- Open a browser and authenticate with $TOKEN
+
     # Available at:
-
-    IP=$(multipass info node1 | grep IPv4 | awk '{print $2}')
+    http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+    
     TOKEN=$(multipass exec node1 -- /bin/bash -c "sudo cat /var/lib/rancher/k3s/server/node-token")
-
-    # http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
-    echo "IP=$IP"
     echo "TOKEN=$TOKEN"
     echo "Dashboard:"
     kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token
