@@ -37,6 +37,7 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 ## Dashboard
 
 - Open a terminal and run kubectl proxy:
+
     kubectl proxy
 
 - Open a browser and authenticate with $TOKEN
