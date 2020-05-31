@@ -13,8 +13,8 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 ## Launch 4-node K3S cluster
 
 - Run 4 x single processor 2G memory 4G disk
-- K3S is launched
-- Add packages to the cluster:
+- K3S cluster is launched
+- Add packages to the cluster
 - Kubernetes Dashboard v2.0
 - Prometheus
 - JanusGraph
