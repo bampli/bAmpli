@@ -141,10 +141,15 @@ echo "Dashboard:"
 kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token
 echo "----------------------------------------------------------------"
 
-# LAUNCH GREMLIN CLIENT
-# JanusGraph is running at pod POD_NAME, shown by command below:
-# kubectl get pods --namespace default -l "app=janusgraph,release=janus" -o jsonpath="{.items[0].metadata.name}"
-# Launch a client, for Windows10 tweak MSYS_NO_PATHCONV (see more at top)
-export MSYS_NO_PATHCONV=1
-kubectl exec -it $POD_NAME -- /janusgraph-0.2.0-hadoop2/bin/gremlin.sh
-#export MSYS_NO_PATHCONV=0
+# --------------------------------------------------------
+# Gremlin client
+# --------------------------------------------------------
+# JanusGraph is running as shown by command below:
+kubectl get pods --namespace default -l "app=janusgraph,release=janus" -o jsonpath="{.items[0].metadata.name}"
+# Set POD_NAME
+export POD_NAME=$(kubectl get pods --namespace default -l "app=janusgraph,release=janus" -o jsonpath="{.items[0].metadata.name}")
+echo "----------------------------------------------------------------"
+echo "Gremlin-Client-Pod: $POD_NAME"
+# Launch a client, but Windows10 should tweak MSYS_NO_PATHCONV
+#export MSYS_NO_PATHCONV=1
+#kubectl exec -it $POD_NAME -- /janusgraph-0.2.0-hadoop2/bin/gremlin.sh
