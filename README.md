@@ -27,7 +27,7 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
     ./k3s-setup.sh
 ```
 
-## Gremlin client launch at end (option)
+## Gremlin client launch (optional)
 
 ```console
     # JanusGraph is running as shown by command below:
