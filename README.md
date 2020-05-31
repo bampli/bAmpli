@@ -42,7 +42,7 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 
 ## Dashboard
 
-- Open a terminal and run kubectl proxy:
+- Open a new terminal and run proxy:
 
 ```console
     kubectl proxy
