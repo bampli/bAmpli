@@ -24,8 +24,17 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 ```console
     git clone https://github.com/bampli/bampli.git
     cd bampli
-    ./k3s-setup.sh
+    ./bampli.sh new
 ```
+### Usage
+
+#### ./bampli.sh start|suspend|new|renew|delete
+
+- start: start all suspended nodes
+- suspend: suspend all nodes nicely
+- new: create new cluster with 4 nodes
+- renew: delete/purge existing nodes, and recreate cluster
+- delete: delete all nodes, no purge
 
 ## Gremlin client launch (optional)
 
