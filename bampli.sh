@@ -18,6 +18,7 @@ if [ $#=1 ]; then
       ./bampli.sh delete
       echo "multipass purge"
       multipass purge
+      rm -f k3s.yaml dashboard.admin-user.yml dashboard.admin-user-role.yml
       ./bampli.sh new
       exit 0
     ;;
