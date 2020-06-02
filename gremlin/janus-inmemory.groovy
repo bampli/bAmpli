@@ -156,7 +156,7 @@ mgmt.commit()
 println "\n========================";[]
 println "Loading air-routes graph";[]
 println "========================\n";[]
-graph.io(graphml()).readGraph('air-routes.graphml')
+graph.io(graphml()).readGraph('/bampli/gremlin/air-routes.graphml')
 graph.tx().commit();[]
 
 // Setup our traversal source object
