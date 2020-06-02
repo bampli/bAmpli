@@ -117,7 +117,7 @@ EOF
 #   - storage.backend: berkeleyje
 #   - index.search.backend: lucene
 #
-helm install janus ./janusgraph
+helm install gremlin ./janusgraph
 
 export POD_NAME=$(kubectl get pods --namespace default -l "app=janusgraph,release=janus" -o jsonpath="{.items[0].metadata.name}")
 
@@ -145,11 +145,13 @@ echo "----------------------------------------------------------------"
 # Gremlin client
 # --------------------------------------------------------
 # JanusGraph is running as shown by command below:
-kubectl get pods --namespace default -l "app=janusgraph,release=janus" -o jsonpath="{.items[0].metadata.name}"
+#kubectl get pods --namespace default -l "app=janusgraph,release=janus" -o jsonpath="{.items[0].metadata.name}"
+
 # Set POD_NAME
 export POD_NAME=$(kubectl get pods --namespace default -l "app=janusgraph,release=janus" -o jsonpath="{.items[0].metadata.name}")
 echo "Gremlin-Client-Pod: $POD_NAME"
 echo "----------------------------------------------------------------"
+
 # Launch a client, but Windows10 should first tweak MSYS_NO_PATHCONV
 #export MSYS_NO_PATHCONV=1
 # Fix multiple SLF4J bindings: disable "logback-classic" as shown below
