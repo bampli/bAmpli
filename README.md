@@ -28,21 +28,22 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 ```
 ### Usage
 
-#### ./bampli.sh start|suspend|new|renew|delete
+#### ./bampli.sh start|suspend|new|renew|delete|client
 
 - start: start all suspended nodes
 - suspend: suspend all nodes nicely
 - new: create new cluster with 4 nodes
 - renew: delete/purge existing nodes, and recreate cluster
 - delete: delete all nodes, no purge
+- client: launch gremlin client console
 
 ## Gremlin client launch (optional)
 
 ```console
-    # JanusGraph is running as shown by command below:
+    # JanusGraph is running at following pod:
     kubectl get pods --namespace default -l "app=janusgraph,release=janus" -o jsonpath="{.items[0].metadata.name}"
     # Set POD_NAME
-    export POD_NAME=$(kubectl get pods --namespace default -l "app=janusgraph,release=janus" -o jsonpath="{.items[0].metadata.name}")
+    export POD_NAME=$(kubectl get pods --namespace default -l "app=janusgraph,release=gremlin" -o jsonpath="{.items[0].metadata.name}")
 
     # Launch a client, but Windows10 should tweak MSYS_NO_PATHCONV
     export MSYS_NO_PATHCONV=1
