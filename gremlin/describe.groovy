@@ -1,4 +1,5 @@
 
+// https://gist.githubusercontent.com/robertdale/ad4c63910009dd1118abe67b33ce41e1/raw/27502e0db6916995a44ccfc00b4d1c11d62ba8a2/describe.groovy
 // This can be imported via ./bin/gremlin.sh -i describe.groovy
 // A variable 'graph' must be defined with a JanusGraph graph
 // Run it as a plugin command ':schema'
