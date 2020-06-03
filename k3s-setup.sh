@@ -142,20 +142,9 @@ kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token
 echo "----------------------------------------------------------------"
 
 # --------------------------------------------------------
-# Gremlin client
+# Gremlin client (optional)
 # --------------------------------------------------------
-# JanusGraph is running as shown by command below:
-#kubectl get pods --namespace default -l "app=janusgraph,release=janus" -o jsonpath="{.items[0].metadata.name}"
-
-# Set POD_NAME
-export POD_NAME=$(kubectl get pods --namespace default -l "app=janusgraph,release=gremlin" -o jsonpath="{.items[0].metadata.name}")
-echo "Gremlin-Client-Pod: $POD_NAME"
-echo "----------------------------------------------------------------"
-
-# Launch a client, but Windows10 should first tweak MSYS_NO_PATHCONV
-#export MSYS_NO_PATHCONV=1
-# Fix multiple SLF4J bindings: disable "logback-classic" as shown below
-#   and keep [jar:file:/janusgraph-0.2.0-hadoop2/lib/slf4j-log4j12-1.7.12.jar!/org/slf4j/impl/StaticLoggerBinder.class]
-#   more details at http://www.slf4j.org/codes.html#multiple_bindings
-#kubectl exec -it $POD_NAME -- mv /janusgraph-0.2.0-hadoop2/lib/logback-classic-1.1.2.jar /janusgraph-0.2.0-hadoop2/lib/logback-classic-1.1.2.jar.old
-#kubectl exec -it $POD_NAME -- /janusgraph-0.2.0-hadoop2/bin/gremlin.sh
+# JanusGraph is running at following pod:
+#kubectl get pods --namespace default -l "app=janusgraph,release=gremlin" -o jsonpath="{.items[0].metadata.name}"
+# Launch gremlin client
+#./bampli.sh client
