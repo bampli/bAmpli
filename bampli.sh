@@ -25,6 +25,9 @@ if [ $#=1 ]; then
     "client")
       # --------------------------------------------------------
       # Gremlin client
+      #
+      # Allows parameters for schema initialization:
+      # ./bampli.sh client -i /bampli/gremlin/janus-inmemory.groovy
       # --------------------------------------------------------
       # Set POD_NAME
       export POD_NAME=$(kubectl get pods --namespace default -l "app=janusgraph,release=gremlin" -o jsonpath="{.items[0].metadata.name}")
@@ -33,17 +36,17 @@ if [ $#=1 ]; then
       # Windows10 requires tweaks, starting with MSYS_NO_PATHCONV
       # https://forums.docker.com/t/weird-error-under-git-bash-msys-solved/9210
       export MSYS_NO_PATHCONV=1
-      # Fix multiple SLF4J bindings: disable "logback-classic"
-      #   keep [jar:file:/janusgraph-0.2.0-hadoop2/lib/slf4j-log4j12-1.7.12.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+      # Tweak to fix multiple SLF4J bindings:
       #   see http://www.slf4j.org/codes.html#multiple_bindings
+      #   keep [jar:file:/janusgraph-0.2.0-hadoop2/lib/slf4j-log4j12-1.7.12.jar!/org/slf4j/impl/StaticLoggerBinder.class]
       export JARFILE="/janusgraph-0.2.0-hadoop2/lib/logback-classic-1.1.2.jar"
       export HAS=$(kubectl exec $POD_NAME -- test -f "$JARFILE" && echo "1")
-      if [ $HAS ]; then
+      if [ $HAS ]; then # disable it
         kubectl exec -it $POD_NAME -- mv $JARFILE $JARFILE.old
       fi
       #kubectl exec -it $POD_NAME -- ls /janusgraph-0.2.0-hadoop2/lib
-      # Launch gremlin client
-      kubectl exec -it $POD_NAME -- /janusgraph-0.2.0-hadoop2/bin/gremlin.sh
+      # Launch gremlin client, couple parameters allowed
+      kubectl exec -it $POD_NAME -- /janusgraph-0.2.0-hadoop2/bin/gremlin.sh $2 $3
       exit 0
     ;;
   esac
