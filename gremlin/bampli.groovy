@@ -29,8 +29,8 @@ DEPLOY = mgmt.makeEdgeLabel('DEPLOY').multiplicity(SIMPLE).make()
 GET_WIP = mgmt.makeEdgeLabel('GET_WIP').multiplicity(SIMPLE).make()
 PUT_WIP = mgmt.makeEdgeLabel('PUT_WIP').multiplicity(SIMPLE).make()
 
-mgmt.commit()
-mgmt = graph.openManagement()
+// mgmt.commit()
+// mgmt = graph.openManagement()
 
 println "\n=============";[]
 println "Creating property keys";[]
@@ -51,11 +51,24 @@ p_deploy = mgmt.makePropertyKey('deploy').dataType(String.class).cardinality(Car
 p_get_wip = mgmt.makePropertyKey('get_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 p_put_wip = mgmt.makePropertyKey('put_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 
-//mgmt.addProperties(Product, mgmt.getPropertyKey('desc'))
-//mgmt.addProperties(Stage, mgmt.getPropertyKey('desc'))
-//mgmt.addProperties(TRANSFORM, p_elapsed)
-// mgmt.addProperties(GET_WIP, p_elapsed)
-// mgmt.addProperties(PUT_WIP, p_elapsed)
+println "\n=================================";[]
+println "Define Connections";[]
+println "=================================\n";[]
+
+mgmt.addConnection(ROUTE, Stage, Stage)
+mgmt.addConnection(ROUTE, Product, Stage)
+mgmt.addConnection(ROUTE, Stage, Product)
+mgmt.addConnection(DEPLOY, Stage, Task)
+mgmt.addConnection(DEPLOY, Product, Task)
+mgmt.addConnection(TRANSFORM, Wip, Wip)
+mgmt.addConnection(GET_WIP, Task, Wip)
+mgmt.addConnection(PUT_WIP, Task, Wip)
+
+mgmt.addProperties(Product, p_desc)
+mgmt.addProperties(Stage, p_desc)
+mgmt.addProperties(TRANSFORM, p_elapsed)
+mgmt.addProperties(GET_WIP, p_elapsed)
+mgmt.addProperties(PUT_WIP, p_elapsed)
 
 mgmt.commit()
 
@@ -108,22 +121,6 @@ mgmt.awaitGraphIndexStatus(graph, 'tranIndex').status(SchemaStatus.REGISTERED).c
 mgmt.awaitGraphIndexStatus(graph, 'deplIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.awaitGraphIndexStatus(graph, 'getwIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.awaitGraphIndexStatus(graph, 'putwIndex').status(SchemaStatus.REGISTERED).call()
-
-mgmt.commit()
-mgmt=graph.openManagement()
-
-println "\n=================================";[]
-println "Define Connections";[]
-println "=================================\n";[]
-
-mgmt.addConnection(ROUTE, Stage, Stage)
-mgmt.addConnection(ROUTE, Product, Stage)
-mgmt.addConnection(ROUTE, Stage, Product)
-mgmt.addConnection(DEPLOY, Stage, Task)
-mgmt.addConnection(DEPLOY, Product, Task)
-mgmt.addConnection(TRANSFORM, Wip, Wip)
-mgmt.addConnection(GET_WIP, Task, Wip)
-mgmt.addConnection(PUT_WIP, Task, Wip)
 
 mgmt.commit()
 mgmt=graph.openManagement()
