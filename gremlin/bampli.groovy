@@ -11,9 +11,9 @@ println "=======================================\n";[]
 graph = JanusGraphFactory.open('inmemory')
 mgmt = graph.openManagement()
 
-println "\n===============";[]
+println "\n=================================";[]
 println "Defining labels";[]
-println "===============\n";[]
+println "=================================\n";[]
 
 // Vertex labels
 Version = mgmt.makeVertexLabel('Version').make()
@@ -32,9 +32,9 @@ PUT_WIP = mgmt.makeEdgeLabel('PUT_WIP').multiplicity(SIMPLE).make()
 // mgmt.commit()
 // mgmt = graph.openManagement()
 
-println "\n=============";[]
+println "\n=================================";[]
 println "Creating property keys";[]
-println "=============\n";[]
+println "=================================\n";[]
 
 // Vertex
 p_product = mgmt.makePropertyKey('product').dataType(String.class).cardinality(Cardinality.SINGLE).make()
@@ -66,9 +66,9 @@ p_put_wip = mgmt.makePropertyKey('put_wip').dataType(String.class).cardinality(C
 
 mgmt.commit()
 
-println "\n==============";[]
+println "\n=================================";[]
 println "Building index";[]
-println "==============\n";[]
+println "=================================\n";[]
 
 // Construct (unique?) composite index for commonly used property keys
 graph.tx().rollback()
@@ -132,42 +132,37 @@ mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'elapIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.commit()
 
-println "Waiting for elapIndex to be ready";[]
+println "Waiting for routIndex to be ready";[]
 mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'routIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.commit()
 
-println "Waiting for elapIndex to be ready";[]
+println "Waiting for tranIndex to be ready";[]
 mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'tranIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.commit()
 
-println "Waiting for elapIndex to be ready";[]
+println "Waiting for deplIndex to be ready";[]
 mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'deplIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.commit()
 
-println "Waiting for elapIndex to be ready";[]
+println "Waiting for getwIndex to be ready";[]
 mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'getwIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.commit()
 
-println "Waiting for elapIndex to be ready";[]
+println "Waiting for putwIndex to be ready";[]
 mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'putwIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.commit()
 println "=================================\n";[]
 
-// Once the index is created force a re-index Note that a reindex is not strictly
-// necessary here. It could be avoided by creating the keys and index as part of the
-// same transaction. I did it this way just to show an example of re-indexing being
-// done. A reindex is always necessary if the index is added after data has been
-// loaded into the graph.
+println "\n=================================";[]
+println "Re-indexing";[]
+println "=================================\n";[]
 mgmt=graph.openManagement()
 
-println "\n===========";[]
-println "Re-indexing";[]
-println "===========\n";[]
 mgmt.awaitGraphIndexStatus(graph, 'prodIndex').call()
 mgmt.updateIndex(mgmt.getGraphIndex('prodIndex'), SchemaAction.REINDEX).get()
 
@@ -204,7 +199,7 @@ mgmt.commit()
 // // Not all of these steps use the index so Janus Graph will give us some warnings.
 // println "\n========================";[]
 // println "Loading air-routes graph";[]
-// println "========================\n";[]
+// println "=================================\n";[]
 // graph.io(graphml()).readGraph('/bampli/gremlin/air-routes.graphml')
 // graph.tx().commit();[]
 
@@ -225,10 +220,10 @@ g = graph.traversal()
 // println "Edges      : $edg";[]
 
 // Look at the properties, just as an exampl of how to do it!
-println "\n========================";[]
+println "\n=================================";[]
 println "Retrieving property keys";[]
-println "========================\n";[]
+println "=================================\n";[]
 mgmt = graph.openManagement()
 types = mgmt.getRelationTypes(PropertyKey.class);[] 
-types.each{println "$it\t: " + mgmt.getPropertyKey("$it").dataType() + " " + mgmt.getPropertyKey("$it").cardinality()};[]
+types.each{println "$it\t\t: " + mgmt.getPropertyKey("$it").dataType() + " " + mgmt.getPropertyKey("$it").cardinality()};[]
 mgmt.commit()   
