@@ -5,7 +5,7 @@
 //   :load bampli.groovy
 
 println "\n=======================================";[]
-println "Creating in-memory Janus Graph instance";[]
+println "Creating in-memory bAmpli Graph";[]
 println "=======================================\n";[]
 // Create a new graph instance
 graph = JanusGraphFactory.open('inmemory')
@@ -24,7 +24,7 @@ Task = mgmt.makeVertexLabel('Task').make()
 
 // Edge labels and usage
 ROUTE = mgmt.makeEdgeLabel('ROUTE').multiplicity(MULTI).make()
-TRANSFORM = mgmt.makeEdgeLabel('TRANSFORM').multiplicity(MULTI).make()
+TRANSF = mgmt.makeEdgeLabel('TRANSF').multiplicity(MULTI).make()
 DEPLOY = mgmt.makeEdgeLabel('DEPLOY').multiplicity(SIMPLE).make()
 GET_WIP = mgmt.makeEdgeLabel('GET_WIP').multiplicity(SIMPLE).make()
 PUT_WIP = mgmt.makeEdgeLabel('PUT_WIP').multiplicity(SIMPLE).make()
@@ -46,7 +46,7 @@ p_desc = mgmt.makePropertyKey('desc').dataType(String.class).cardinality(Cardina
 // Edge
 p_elapsed = mgmt.makePropertyKey('elapsed').dataType(Integer.class).cardinality(Cardinality.SINGLE).make()
 p_route = mgmt.makePropertyKey('route').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_transform = mgmt.makePropertyKey('transform').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_transf = mgmt.makePropertyKey('transf').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 p_deploy = mgmt.makePropertyKey('deploy').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 p_get_wip = mgmt.makePropertyKey('get_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 p_put_wip = mgmt.makePropertyKey('put_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
@@ -60,7 +60,7 @@ p_put_wip = mgmt.makePropertyKey('put_wip').dataType(String.class).cardinality(C
 // mgmt.addConnection(ROUTE, Stage, Product)
 // mgmt.addConnection(DEPLOY, Stage, Task)
 // mgmt.addConnection(DEPLOY, Product, Task)
-// mgmt.addConnection(TRANSFORM, Wip, Wip)
+// mgmt.addConnection(TRANSF, Wip, Wip)
 // mgmt.addConnection(GET_WIP, Task, Wip)
 // mgmt.addConnection(PUT_WIP, Task, Wip)
 
@@ -81,7 +81,7 @@ p_task = mgmt.getPropertyKey('task')
 p_desc = mgmt.getPropertyKey('desc')
 p_elapsed = mgmt.getPropertyKey('elapsed')
 p_route = mgmt.getPropertyKey('route')
-p_transform = mgmt.getPropertyKey('transform')
+p_transf = mgmt.getPropertyKey('transf')
 p_deploy = mgmt.getPropertyKey('deploy')
 p_get_wip = mgmt.getPropertyKey('get_wip')
 p_put_wip = mgmt.getPropertyKey('put_wip')
@@ -92,7 +92,7 @@ idx3 = mgmt.buildIndex('stagIndex', Vertex.class).addKey(p_stage).buildComposite
 idx4 = mgmt.buildIndex('taskIndex', Vertex.class).addKey(p_task).buildCompositeIndex()
 idx5 = mgmt.buildIndex('elapIndex', Edge.class).addKey(p_elapsed).buildCompositeIndex()
 idx6 = mgmt.buildIndex('routIndex', Edge.class).addKey(p_route).buildCompositeIndex()
-idx7 = mgmt.buildIndex('tranIndex', Edge.class).addKey(p_transform).buildCompositeIndex()
+idx7 = mgmt.buildIndex('tranIndex', Edge.class).addKey(p_transf).buildCompositeIndex()
 idx8 = mgmt.buildIndex('deplIndex', Edge.class).addKey(p_deploy).buildCompositeIndex()
 idx9 = mgmt.buildIndex('getwIndex', Edge.class).addKey(p_get_wip).buildCompositeIndex()
 idxA = mgmt.buildIndex('putwIndex', Edge.class).addKey(p_put_wip).buildCompositeIndex()
@@ -100,7 +100,7 @@ idxA = mgmt.buildIndex('putwIndex', Edge.class).addKey(p_put_wip).buildComposite
 //idx1 = mgmt.buildIndex('prodIndex', Vertex.class).addKey(prod).unique().buildCompositeIndex()
 // mgmt.addProperties(Product, p_desc)
 // mgmt.addProperties(Stage, p_desc)
-// mgmt.addProperties(TRANSFORM, p_elapsed)
+// mgmt.addProperties(TRANSF, p_elapsed)
 // mgmt.addProperties(GET_WIP, p_elapsed)
 // mgmt.addProperties(PUT_WIP, p_elapsed)
 
@@ -225,5 +225,5 @@ println "Retrieving property keys";[]
 println "=================================\n";[]
 mgmt = graph.openManagement()
 types = mgmt.getRelationTypes(PropertyKey.class);[] 
-types.each{println "$it\t\t: " + mgmt.getPropertyKey("$it").dataType() + " " + mgmt.getPropertyKey("$it").cardinality()};[]
+types.each{println "$it\t: " + mgmt.getPropertyKey("$it").dataType() + " " + mgmt.getPropertyKey("$it").cardinality()};[]
 mgmt.commit()   
