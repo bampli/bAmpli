@@ -67,6 +67,17 @@ println "==============\n";[]
 graph.tx().rollback()
 mgmt=graph.openManagement()
 
+p_product = mgmt.getPropertyKey('product')
+p_wip = mgmt.getPropertyKey('wip')
+p_stage = mgmt.getPropertyKey('stage')
+p_task = mgmt.getPropertyKey('task')
+p_elapsed = mgmt.getPropertyKey('elapsed')
+p_route = mgmt.getPropertyKey('route')
+p_transform = mgmt.getPropertyKey('transform')
+p_deploy = mgmt.getPropertyKey('deploy')
+p_get_wip = mgmt.getPropertyKey('get_wip')
+p_put_wip = mgmt.getPropertyKey('put_wip')
+
 idx1 = mgmt.buildIndex('prodIndex', Vertex.class).addKey(p_product).buildCompositeIndex()
 idx2 = mgmt.buildIndex('wipxIndex', Vertex.class).addKey(p_wip).buildCompositeIndex()
 idx3 = mgmt.buildIndex('stagIndex', Vertex.class).addKey(p_stage).buildCompositeIndex()
