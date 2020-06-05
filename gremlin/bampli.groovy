@@ -206,18 +206,60 @@ mgmt.commit()
 // Setup our traversal source object
 g = graph.traversal()
 
-// // Display a few statistics
-// apt = g.V().has('type','airport').count().next();[]
-// cty = g.V().has('type','country').count().next();[]
-// cnt = g.V().has('type','continent').count().next();[]
-// rts = g.E().hasLabel('route').count().next();[]
-// edg = g.E().count().next();[]
+g.addV("Stage").property("stage","S1").as("S1").
+  addV("Stage").property("stage","S2").as("S2").
+  addV("Stage").property("stage","S3").as("S3").
+  addV("Wip").property("wip","W10").as("W10").
+  addV("Wip").property("wip","W20").as("W20").
+  addV("Wip").property("wip","W31").as("W31").
+  addV("Wip").property("wip","W32").as("W32").
+  addV("Wip").property("wip","W33").as("W33").
+  addV("Task").property("task","T1").as("T1").
+  addV("Task").property("task","T2").as("T2").
+  addV("Task").property("task","T3").as("T3").
+  addV("Product").property("product","P1").as("P1").
+  addV("Product").property("product","P2").as("P2").
+  addV("Product").property("product","P3").as("P3").
+  addE("ROUTE").from("P1").to("S2").
+  addE("ROUTE").from("S2").to("S3").
+  addE("ROUTE").from("S3").to("P3").
+  addE("ROUTE").from("P2").to("S1").
+  addE("ROUTE").from("S1").to("S3").
+  addE("DEPLOY").from("S1").to("T1").
+  addE("DEPLOY").from("S2").to("T2").
+  addE("DEPLOY").from("S3").to("T3").
+  addE("GET_WIP").from("T1").to("W10").
+  addE("GET_WIP").from("T2").to("W20").
+  addE("GET_WIP").from("T3").to("W31").
+  addE("GET_WIP").from("T3").to("W32").
+  addE("PUT_WIP").from("T1").to("W31").
+  addE("PUT_WIP").from("T2").to("W32").
+  addE("PUT_WIP").from("T3").to("W33").
+  addE("TRANSF").from("W10").to("W31").
+  addE("TRANSF").from("W20").to("W32").
+  addE("TRANSF").from("W31").to("W33").
+  addE("TRANSF").from("W32").to("W33").
+  .iterate()
 
-// println "Airports   : $apt";[]
-// println "Countries  : $cty";[]
-// println "Continents : $cnt";[]
-// println "Routes     : $rts";[]
-// println "Edges      : $edg";[]
+// Display a few statistics
+sta = g.V().has('type','stage').count().next();[]
+wip = g.V().has('type','wip').count().next();[]
+tsk = g.V().has('type','task').count().next();[]
+prd = g.V().has('type','product').count().next();[]
+rou = g.E().hasLabel('ROUTE').count().next();[]
+gwi = g.E().hasLabel('GET_WIP').count().next();[]
+pwi = g.E().hasLabel('PUT_WIP').count().next();[]
+tra = g.E().hasLabel('TRANSF').count().next();[]
+
+
+println "Stages     : $sta";[]
+println "Wip        : $wip";[]
+println "Task       : $tsk";[]
+println "Product    : $prd";[]
+println "ROUTE      : $rou";[]
+println "GET_WIP    : $gwi";[]
+println "PUT_WIP    : $pwi";[]
+println "TRANSF     : $tra";[]
 
 // Look at the properties, just as an exampl of how to do it!
 println "\n=================================";[]
