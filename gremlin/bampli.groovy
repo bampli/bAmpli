@@ -112,7 +112,19 @@ println "Waiting for index to be ready";[]
 println "=================================\n";[]
 
 mgmt.awaitGraphIndexStatus(graph, 'prodIndex').status(SchemaStatus.REGISTERED).call()
+mgmt.commit()
+mgmt=graph.openManagement()
+
+println "\n=================================";[]
+println "Waiting for index to be ready";[]
+println "=================================\n";[]
 mgmt.awaitGraphIndexStatus(graph, 'wipxIndex').status(SchemaStatus.REGISTERED).call()
+mgmt.commit()
+mgmt=graph.openManagement()
+
+println "\n=================================";[]
+println "Waiting for index to be ready";[]
+println "=================================\n";[]
 mgmt.awaitGraphIndexStatus(graph, 'stagIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.awaitGraphIndexStatus(graph, 'taskIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.awaitGraphIndexStatus(graph, 'elapIndex').status(SchemaStatus.REGISTERED).call()
