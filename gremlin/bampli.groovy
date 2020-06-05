@@ -105,47 +105,65 @@ idxA = mgmt.buildIndex('putwIndex', Edge.class).addKey(p_put_wip).buildComposite
 // mgmt.addProperties(PUT_WIP, p_elapsed)
 
 mgmt.commit()
-mgmt=graph.openManagement()
 
 println "\n=================================";[]
-println "Waiting for index to be ready";[]
-println "=================================\n";[]
-
+println "Waiting for prodIndex to be ready";[]
+mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'prodIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.commit()
-mgmt=graph.openManagement()
 
-println "\n=================================";[]
-println "Waiting for index to be ready";[]
-println "=================================\n";[]
+println "Waiting for wipxIndex to be ready";[]
+mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'wipxIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.commit()
-mgmt=graph.openManagement()
 
-println "\n=================================";[]
-println "Waiting for index to be ready";[]
-println "=================================\n";[]
+println "Waiting for stagIndex to be ready";[]
+mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'stagIndex').status(SchemaStatus.REGISTERED).call()
+mgmt.commit()
+
+println "Waiting for taskIndex to be ready";[]
+mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'taskIndex').status(SchemaStatus.REGISTERED).call()
+mgmt.commit()
+
+println "Waiting for elapIndex to be ready";[]
+mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'elapIndex').status(SchemaStatus.REGISTERED).call()
-
 mgmt.commit()
-mgmt=graph.openManagement()
 
+println "Waiting for elapIndex to be ready";[]
+mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'routIndex').status(SchemaStatus.REGISTERED).call()
-mgmt.awaitGraphIndexStatus(graph, 'tranIndex').status(SchemaStatus.REGISTERED).call()
-mgmt.awaitGraphIndexStatus(graph, 'deplIndex').status(SchemaStatus.REGISTERED).call()
-mgmt.awaitGraphIndexStatus(graph, 'getwIndex').status(SchemaStatus.REGISTERED).call()
-mgmt.awaitGraphIndexStatus(graph, 'putwIndex').status(SchemaStatus.REGISTERED).call()
-
 mgmt.commit()
+
+println "Waiting for elapIndex to be ready";[]
 mgmt=graph.openManagement()
+mgmt.awaitGraphIndexStatus(graph, 'tranIndex').status(SchemaStatus.REGISTERED).call()
+mgmt.commit()
+
+println "Waiting for elapIndex to be ready";[]
+mgmt=graph.openManagement()
+mgmt.awaitGraphIndexStatus(graph, 'deplIndex').status(SchemaStatus.REGISTERED).call()
+mgmt.commit()
+
+println "Waiting for elapIndex to be ready";[]
+mgmt=graph.openManagement()
+mgmt.awaitGraphIndexStatus(graph, 'getwIndex').status(SchemaStatus.REGISTERED).call()
+mgmt.commit()
+
+println "Waiting for elapIndex to be ready";[]
+mgmt=graph.openManagement()
+mgmt.awaitGraphIndexStatus(graph, 'putwIndex').status(SchemaStatus.REGISTERED).call()
+mgmt.commit()
+println "=================================\n";[]
 
 // Once the index is created force a re-index Note that a reindex is not strictly
 // necessary here. It could be avoided by creating the keys and index as part of the
 // same transaction. I did it this way just to show an example of re-indexing being
 // done. A reindex is always necessary if the index is added after data has been
 // loaded into the graph.
+mgmt=graph.openManagement()
 
 println "\n===========";[]
 println "Re-indexing";[]
@@ -175,7 +193,7 @@ mgmt.awaitGraphIndexStatus(graph, 'deplIndex').call()
 mgmt.updateIndex(mgmt.getGraphIndex('deplIndex'), SchemaAction.REINDEX).get()
 
 mgmt.awaitGraphIndexStatus(graph, 'getwIndex').call()
-mgmt.updateIndex(mgmt.getGraphIndex('getWipIndex'), SchemaAction.REINDEX).get()
+mgmt.updateIndex(mgmt.getGraphIndex('getwIndex'), SchemaAction.REINDEX).get()
 
 mgmt.awaitGraphIndexStatus(graph, 'putwIndex').call()
 mgmt.updateIndex(mgmt.getGraphIndex('putwIndex'), SchemaAction.REINDEX).get()
