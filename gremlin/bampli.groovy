@@ -53,9 +53,9 @@ p_put_wip = mgmt.makePropertyKey('put_wip').dataType(String.class).cardinality(C
 
 //mgmt.addProperties(Product, mgmt.getPropertyKey('desc'))
 //mgmt.addProperties(Stage, mgmt.getPropertyKey('desc'))
-mgmt.addProperties(TRANSFORM, p_elapsed)
-mgmt.addProperties(GET_WIP, p_elapsed)
-mgmt.addProperties(PUT_WIP, p_elapsed)
+//mgmt.addProperties(TRANSFORM, p_elapsed)
+// mgmt.addProperties(GET_WIP, p_elapsed)
+// mgmt.addProperties(PUT_WIP, p_elapsed)
 
 mgmt.commit()
 
