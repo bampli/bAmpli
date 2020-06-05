@@ -98,11 +98,11 @@ idx9 = mgmt.buildIndex('getwIndex', Edge.class).addKey(p_get_wip).buildComposite
 idxA = mgmt.buildIndex('putwIndex', Edge.class).addKey(p_put_wip).buildCompositeIndex()
 
 //idx1 = mgmt.buildIndex('prodIndex', Vertex.class).addKey(prod).unique().buildCompositeIndex()
-mgmt.addProperties(Product, p_desc)
-mgmt.addProperties(Stage, p_desc)
-mgmt.addProperties(TRANSFORM, p_elapsed)
-mgmt.addProperties(GET_WIP, p_elapsed)
-mgmt.addProperties(PUT_WIP, p_elapsed)
+// mgmt.addProperties(Product, p_desc)
+// mgmt.addProperties(Stage, p_desc)
+// mgmt.addProperties(TRANSFORM, p_elapsed)
+// mgmt.addProperties(GET_WIP, p_elapsed)
+// mgmt.addProperties(PUT_WIP, p_elapsed)
 
 mgmt.commit()
 mgmt=graph.openManagement()
