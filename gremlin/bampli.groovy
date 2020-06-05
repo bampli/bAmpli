@@ -51,8 +51,8 @@ p_deploy = mgmt.makePropertyKey('deploy').dataType(String.class).cardinality(Car
 p_get_wip = mgmt.makePropertyKey('get_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 p_put_wip = mgmt.makePropertyKey('put_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 
-mgmt.addProperties(Product, mgmt.getPropertyKey('desc'))
-mgmt.addProperties(Stage, mgmt.getPropertyKey('desc'))
+//mgmt.addProperties(Product, mgmt.getPropertyKey('desc'))
+//mgmt.addProperties(Stage, mgmt.getPropertyKey('desc'))
 mgmt.addProperties(TRANSFORM, p_elapsed)
 mgmt.addProperties(GET_WIP, p_elapsed)
 mgmt.addProperties(PUT_WIP, p_elapsed)
