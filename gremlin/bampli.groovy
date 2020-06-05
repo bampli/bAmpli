@@ -116,6 +116,10 @@ mgmt.awaitGraphIndexStatus(graph, 'wipxIndex').status(SchemaStatus.REGISTERED).c
 mgmt.awaitGraphIndexStatus(graph, 'stagIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.awaitGraphIndexStatus(graph, 'taskIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.awaitGraphIndexStatus(graph, 'elapIndex').status(SchemaStatus.REGISTERED).call()
+
+mgmt.commit()
+mgmt=graph.openManagement()
+
 mgmt.awaitGraphIndexStatus(graph, 'routIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.awaitGraphIndexStatus(graph, 'tranIndex').status(SchemaStatus.REGISTERED).call()
 mgmt.awaitGraphIndexStatus(graph, 'deplIndex').status(SchemaStatus.REGISTERED).call()
