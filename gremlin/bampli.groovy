@@ -51,24 +51,18 @@ p_deploy = mgmt.makePropertyKey('deploy').dataType(String.class).cardinality(Car
 p_get_wip = mgmt.makePropertyKey('get_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 p_put_wip = mgmt.makePropertyKey('put_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 
-println "\n=================================";[]
-println "Define Connections";[]
-println "=================================\n";[]
+// println "\n=================================";[]
+// println "Define Connections";[]
+// println "=================================\n";[]
 
-mgmt.addConnection(ROUTE, Stage, Stage)
-mgmt.addConnection(ROUTE, Product, Stage)
-mgmt.addConnection(ROUTE, Stage, Product)
-mgmt.addConnection(DEPLOY, Stage, Task)
-mgmt.addConnection(DEPLOY, Product, Task)
-mgmt.addConnection(TRANSFORM, Wip, Wip)
-mgmt.addConnection(GET_WIP, Task, Wip)
-mgmt.addConnection(PUT_WIP, Task, Wip)
-
-mgmt.addProperties(Product, p_desc)
-mgmt.addProperties(Stage, p_desc)
-mgmt.addProperties(TRANSFORM, p_elapsed)
-mgmt.addProperties(GET_WIP, p_elapsed)
-mgmt.addProperties(PUT_WIP, p_elapsed)
+// mgmt.addConnection(ROUTE, Stage, Stage)
+// mgmt.addConnection(ROUTE, Product, Stage)
+// mgmt.addConnection(ROUTE, Stage, Product)
+// mgmt.addConnection(DEPLOY, Stage, Task)
+// mgmt.addConnection(DEPLOY, Product, Task)
+// mgmt.addConnection(TRANSFORM, Wip, Wip)
+// mgmt.addConnection(GET_WIP, Task, Wip)
+// mgmt.addConnection(PUT_WIP, Task, Wip)
 
 mgmt.commit()
 
@@ -103,6 +97,11 @@ idx9 = mgmt.buildIndex('getwIndex', Edge.class).addKey(p_get_wip).buildComposite
 idxA = mgmt.buildIndex('putwIndex', Edge.class).addKey(p_put_wip).buildCompositeIndex()
 
 //idx1 = mgmt.buildIndex('prodIndex', Vertex.class).addKey(prod).unique().buildCompositeIndex()
+mgmt.addProperties(Product, p_desc)
+mgmt.addProperties(Stage, p_desc)
+mgmt.addProperties(TRANSFORM, p_elapsed)
+mgmt.addProperties(GET_WIP, p_elapsed)
+mgmt.addProperties(PUT_WIP, p_elapsed)
 
 mgmt.commit()
 mgmt=graph.openManagement()
