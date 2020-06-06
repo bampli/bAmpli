@@ -37,8 +37,6 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 - **delete**: delete all nodes, no purge
 - **client**: launch gremlin client console with bAmpli Graph Schema parameter
 
-### Gremlin client
-
 ### ./bampli.sh client -i /bampli/gremlin/describe.groovy
       
 ```console
