@@ -275,4 +275,8 @@ println "=================================\n";[]
 mgmt = graph.openManagement()
 types = mgmt.getRelationTypes(PropertyKey.class);[] 
 types.each{println "$it\t: " + mgmt.getPropertyKey("$it").dataType() + " " + mgmt.getPropertyKey("$it").cardinality()};[]
-mgmt.commit()   
+mgmt.commit()
+
+// Save bAmpli initial graph
+
+graph.io(IoCore.graphml()).writeGraph("bampli.xml");
