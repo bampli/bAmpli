@@ -61,7 +61,7 @@ Load graph:
 ```console
     graph = TinkerGraph.open();
     graph.io(IoCore.graphml()).readGraph("bampli.xml");
-    g = newGraph.traversal()
+    g = graph.traversal()
     g.V().hasLabel('Stage').count()
 ```
 Save graph:
