@@ -64,9 +64,20 @@ Load graph:
     g = graph.traversal()
     g.V().hasLabel('Stage').count()
 
+    gremlin> g.E().groupCount().by(label)
+    ==>[GET_WIP:4,ROUTE:5,PUT_WIP:3,TRANSF:4,DEPLOY:3]
+    gremlin> g.V().groupCount().by(label)
+    ==>[Task:3,Stage:3,Product:3,Wip:5]
+    
+    gremlin> g.V().has('stage', 'S3').in().values().fold()
+    ==>[S1,S2]
+    gremlin> g.V().has('stage', 'S3').in().in().values().fold()
+    ==>[P2,P1]
+
     mgmt = graph.openManagement()
     mgmt.getOpenInstances()
 ```
+
 Save graph:
 ```console
     graph.io(IoCore.graphml()).writeGraph("bampli.xml");
