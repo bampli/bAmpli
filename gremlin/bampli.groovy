@@ -29,25 +29,27 @@ DEPLOY = mgmt.makeEdgeLabel('DEPLOY').multiplicity(SIMPLE).make()
 GET_WIP = mgmt.makeEdgeLabel('GET_WIP').multiplicity(SIMPLE).make()
 PUT_WIP = mgmt.makeEdgeLabel('PUT_WIP').multiplicity(SIMPLE).make()
 
+// mgmt.commit()
+// mgmt = graph.openManagement()
+
 println "\n=================================";[]
 println "Creating property keys";[]
 println "=================================\n";[]
 
 // Vertex
-p_Product = mgmt.makePropertyKey('Product').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_Wip = mgmt.makePropertyKey('Wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_Stage = mgmt.makePropertyKey('Stage').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_Task = mgmt.makePropertyKey('Task').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-
-// p_desc = mgmt.makePropertyKey('desc').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_product = mgmt.makePropertyKey('product').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_wip = mgmt.makePropertyKey('wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_stage = mgmt.makePropertyKey('stage').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_task = mgmt.makePropertyKey('task').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_desc = mgmt.makePropertyKey('desc').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 
 // Edge
 p_elapsed = mgmt.makePropertyKey('elapsed').dataType(Integer.class).cardinality(Cardinality.SINGLE).make()
-p_ROUTE = mgmt.makePropertyKey('route').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_TRANSF = mgmt.makePropertyKey('transf').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_DEPLOY = mgmt.makePropertyKey('deploy').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_GET_WIP = mgmt.makePropertyKey('get_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_PUT_WIP = mgmt.makePropertyKey('put_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_route = mgmt.makePropertyKey('route').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_transf = mgmt.makePropertyKey('transf').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_deploy = mgmt.makePropertyKey('deploy').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_get_wip = mgmt.makePropertyKey('get_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_put_wip = mgmt.makePropertyKey('put_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 
 // println "\n=================================";[]
 // println "Define Connections";[]
@@ -72,29 +74,28 @@ println "=================================\n";[]
 graph.tx().rollback()
 mgmt=graph.openManagement()
 
-p_Product = mgmt.getPropertyKey('Product')
-p_Wip = mgmt.getPropertyKey('Wip')
-p_Stage = mgmt.getPropertyKey('Stage')
-p_Task = mgmt.getPropertyKey('Task')
+p_product = mgmt.getPropertyKey('product')
+p_wip = mgmt.getPropertyKey('wip')
+p_stage = mgmt.getPropertyKey('stage')
+p_task = mgmt.getPropertyKey('task')
+p_desc = mgmt.getPropertyKey('desc')
 p_elapsed = mgmt.getPropertyKey('elapsed')
-p_ROUTE = mgmt.getPropertyKey('route')
-p_TRANSF = mgmt.getPropertyKey('transf')
-p_DEPLOY = mgmt.getPropertyKey('deploy')
-p_GET_WIP = mgmt.getPropertyKey('get_wip')
-p_PUT_WIP = mgmt.getPropertyKey('put_wip')
+p_route = mgmt.getPropertyKey('route')
+p_transf = mgmt.getPropertyKey('transf')
+p_deploy = mgmt.getPropertyKey('deploy')
+p_get_wip = mgmt.getPropertyKey('get_wip')
+p_put_wip = mgmt.getPropertyKey('put_wip')
 
-// p_desc = mgmt.getPropertyKey('desc')
-
-idx1 = mgmt.buildIndex('prodIndex', Vertex.class).addKey(p_Product).buildCompositeIndex()
-idx2 = mgmt.buildIndex('wipxIndex', Vertex.class).addKey(p_Wip).buildCompositeIndex()
-idx3 = mgmt.buildIndex('stagIndex', Vertex.class).addKey(p_Stage).buildCompositeIndex()
-idx4 = mgmt.buildIndex('taskIndex', Vertex.class).addKey(p_Task).buildCompositeIndex()
+idx1 = mgmt.buildIndex('prodIndex', Vertex.class).addKey(p_product).buildCompositeIndex()
+idx2 = mgmt.buildIndex('wipxIndex', Vertex.class).addKey(p_wip).buildCompositeIndex()
+idx3 = mgmt.buildIndex('stagIndex', Vertex.class).addKey(p_stage).buildCompositeIndex()
+idx4 = mgmt.buildIndex('taskIndex', Vertex.class).addKey(p_task).buildCompositeIndex()
 idx5 = mgmt.buildIndex('elapIndex', Edge.class).addKey(p_elapsed).buildCompositeIndex()
-idx6 = mgmt.buildIndex('routIndex', Edge.class).addKey(p_ROUTE).buildCompositeIndex()
-idx7 = mgmt.buildIndex('tranIndex', Edge.class).addKey(p_TRANSF).buildCompositeIndex()
-idx8 = mgmt.buildIndex('deplIndex', Edge.class).addKey(p_DEPLOY).buildCompositeIndex()
-idx9 = mgmt.buildIndex('getwIndex', Edge.class).addKey(p_GET_WIP).buildCompositeIndex()
-idxA = mgmt.buildIndex('putwIndex', Edge.class).addKey(p_PUT_WIP).buildCompositeIndex()
+idx6 = mgmt.buildIndex('routIndex', Edge.class).addKey(p_route).buildCompositeIndex()
+idx7 = mgmt.buildIndex('tranIndex', Edge.class).addKey(p_transf).buildCompositeIndex()
+idx8 = mgmt.buildIndex('deplIndex', Edge.class).addKey(p_deploy).buildCompositeIndex()
+idx9 = mgmt.buildIndex('getwIndex', Edge.class).addKey(p_get_wip).buildCompositeIndex()
+idxA = mgmt.buildIndex('putwIndex', Edge.class).addKey(p_put_wip).buildCompositeIndex()
 
 //idx1 = mgmt.buildIndex('prodIndex', Vertex.class).addKey(prod).unique().buildCompositeIndex()
 // mgmt.addProperties(Product, p_desc)
@@ -208,20 +209,20 @@ println "=================================\n";[]
 // Setup our traversal source object
 g = graph.traversal()
 
-g.addV("Stage").property("Stage","S1").as("S1").
-  addV("Stage").property("Stage","S2").as("S2").
-  addV("Stage").property("Stage","S3").as("S3").
-  addV("Wip").property("Wip","W10").as("W10").
-  addV("Wip").property("Wip","W20").as("W20").
-  addV("Wip").property("Wip","W31").as("W31").
-  addV("Wip").property("Wip","W32").as("W32").
-  addV("Wip").property("Wip","W33").as("W33").
-  addV("Task").property("Task","T1").as("T1").
-  addV("Task").property("Task","T2").as("T2").
-  addV("Task").property("Task","T3").as("T3").
-  addV("Product").property("Product","P1").as("P1").
-  addV("Product").property("Product","P2").as("P2").
-  addV("Product").property("Product","P3").as("P3").
+g.addV("Stage").property("stage","S1").as("S1").
+  addV("Stage").property("stage","S2").as("S2").
+  addV("Stage").property("stage","S3").as("S3").
+  addV("Wip").property("wip","W10").as("W10").
+  addV("Wip").property("wip","W20").as("W20").
+  addV("Wip").property("wip","W31").as("W31").
+  addV("Wip").property("wip","W32").as("W32").
+  addV("Wip").property("wip","W33").as("W33").
+  addV("Task").property("task","T1").as("T1").
+  addV("Task").property("task","T2").as("T2").
+  addV("Task").property("task","T3").as("T3").
+  addV("Product").property("product","P1").as("P1").
+  addV("Product").property("product","P2").as("P2").
+  addV("Product").property("product","P3").as("P3").
   addE("ROUTE").from("P1").to("S2").
   addE("ROUTE").from("S2").to("S3").
   addE("ROUTE").from("S3").to("P3").
@@ -243,11 +244,10 @@ g.addV("Stage").property("Stage","S1").as("S1").
   addE("TRANSF").from("W32").to("W33").iterate()
 
 // Display a few statistics
-sta = g.V().has('type','Stage').count().next();[]
-wip = g.V().has('type','Wip').count().next();[]
-tsk = g.V().has('type','Task').count().next();[]
-prd = g.V().has('type','Product').count().next();[]
-
+sta = g.V().has('type','stage').count().next();[]
+wip = g.V().has('type','wip').count().next();[]
+tsk = g.V().has('type','task').count().next();[]
+prd = g.V().has('type','product').count().next();[]
 rou = g.E().hasLabel('ROUTE').count().next();[]
 gwi = g.E().hasLabel('GET_WIP').count().next();[]
 pwi = g.E().hasLabel('PUT_WIP').count().next();[]
