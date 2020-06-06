@@ -59,8 +59,10 @@ The -i parameter allows to select a [schema](https://github.com/bampli/bampli/bl
 
 Load graph:
 ```console
-    Graph newGraph = TinkerGraph.open();
-    newGraph.io(IoCore.graphml()).readGraph("bampli.xml");
+    graph = TinkerGraph.open();
+    graph.io(IoCore.graphml()).readGraph("bampli.xml");
+    g = newGraph.traversal()
+    g.V().hasLabel('Stage').count()
 ```
 Save graph:
 ```console
