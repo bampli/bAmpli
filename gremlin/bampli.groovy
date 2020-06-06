@@ -238,8 +238,7 @@ g.addV("Stage").property("stage","S1").as("S1").
   addE("TRANSF").from("W10").to("W31").
   addE("TRANSF").from("W20").to("W32").
   addE("TRANSF").from("W31").to("W33").
-  addE("TRANSF").from("W32").to("W33").
-  .iterate()
+  addE("TRANSF").from("W32").to("W33").iterate()
 
 // Display a few statistics
 sta = g.V().has('type','stage').count().next();[]
