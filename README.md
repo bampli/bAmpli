@@ -37,13 +37,13 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 - **delete**: delete all nodes, no purge
 - **client**: launch gremlin client console with bAmpli Graph Schema parameter
 
-### ./bampli.sh client -i /bampli/gremlin/describe.groovy
+### ./bampli.sh client -i /bampli/gremlin/bampli.groovy
       
 ```console
     cd bampli
     ./bampli.sh client -i /bampli/gremlin/describe.groovy
 ```
-This script executes commands to find JanusGraph container, find its pod and launch the client, as shown below:
+This is a script that executes commands to find JanusGraph container, find its pod and launch the gremlin console, as shown below:
 
 ```console
     # Set POD_NAME
@@ -53,6 +53,7 @@ This script executes commands to find JanusGraph container, find its pod and lau
     export MSYS_NO_PATHCONV=1
     kubectl exec -it $POD_NAME -- /janusgraph-0.2.0-hadoop2/bin/gremlin.sh
 ```
+The -i parameter allows to select a [schema](https://github.com/bampli/bampli/blob/master/gremlin/bampli.groovy) to initialize the Gremlin Console.
 
 ## Dashboard
 
