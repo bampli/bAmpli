@@ -39,7 +39,7 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 
 ### Gremlin client
 
-# ./bampli.sh client -i /bampli/gremlin/describe.groovy
+### ./bampli.sh client -i /bampli/gremlin/describe.groovy
       
 ```console
     cd bampli
