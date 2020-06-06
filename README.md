@@ -63,6 +63,9 @@ Load graph:
     graph.io(IoCore.graphml()).readGraph("bampli.xml");
     g = graph.traversal()
     g.V().hasLabel('Stage').count()
+
+    mgmt = graph.openManagement()
+    mgmt.getOpenInstances()
 ```
 Save graph:
 ```console
