@@ -26,26 +26,32 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
     cd bampli
     ./bampli.sh new
 ```
-### Usage
+## Usage
 
-#### ./bampli.sh start|suspend|new|renew|delete|client
+### ./bampli.sh start|suspend|new|renew|delete|client
 
-- start: start all suspended nodes
-- suspend: suspend all nodes nicely
-- new: create new cluster with 4 nodes
+- new: create and start new cluster with 4 nodes
+- start: start cluster and activate Dashboard proxy
+- suspend: suspend all cluster nodes nicely
 - renew: delete/purge existing nodes, and recreate cluster
 - delete: delete all nodes, no purge
-- client: launch gremlin client console
+- client: launch gremlin client console with bAmpli Graph Schema parameter
 
-## Gremlin client launch (optional)
+### Gremlin client
+
+# ./bampli.sh client -i /bampli/gremlin/describe.groovy
+      
+```console
+    cd bampli
+    ./bampli.sh client -i /bampli/gremlin/describe.groovy
+```
+This script executes commands to find JanusGraph container, find its pod and launch the client, as shown below:
 
 ```console
-    # JanusGraph is running at following pod:
-    kubectl get pods --namespace default -l "app=janusgraph,release=janus" -o jsonpath="{.items[0].metadata.name}"
     # Set POD_NAME
     export POD_NAME=$(kubectl get pods --namespace default -l "app=janusgraph,release=gremlin" -o jsonpath="{.items[0].metadata.name}")
 
-    # Launch a client, but Windows10 should tweak MSYS_NO_PATHCONV
+    # Launch a client, but Windows10 should tweak MSYS_NO_PATHCONV before
     export MSYS_NO_PATHCONV=1
     kubectl exec -it $POD_NAME -- /janusgraph-0.2.0-hadoop2/bin/gremlin.sh
 ```
