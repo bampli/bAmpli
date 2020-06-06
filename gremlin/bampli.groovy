@@ -244,10 +244,15 @@ g.addV("Stage").property("stage","S1").as("S1").
   addE("TRANSF").from("W32").to("W33").iterate()
 
 // Display a few statistics
-sta = g.V().has('type','stage').count().next();[]
-wip = g.V().has('type','wip').count().next();[]
-tsk = g.V().has('type','task').count().next();[]
-prd = g.V().has('type','product').count().next();[]
+// sta = g.V().has('type','stage').count().next();[]
+// wip = g.V().has('type','wip').count().next();[]
+// tsk = g.V().has('type','task').count().next();[]
+// prd = g.V().has('type','product').count().next();[]
+
+sta = g.V().hasLabel('Stage').count().next();[]
+wip = g.V().hasLabel('Wip').count().next();[]
+tsk = g.V().hasLabel('Task').count().next();[]
+prd = g.V().hasLabel('Product').count().next();[]
 rou = g.E().hasLabel('ROUTE').count().next();[]
 gwi = g.E().hasLabel('GET_WIP').count().next();[]
 pwi = g.E().hasLabel('PUT_WIP').count().next();[]
