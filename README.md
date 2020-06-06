@@ -43,7 +43,7 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
     cd bampli
     ./bampli.sh client -i /bampli/gremlin/describe.groovy
 ```
-This script executes commands to find JanusGraph container, find its pod and launch the gremlin console, as shown below:
+This script executes commands to find JanusGraph container, and address its pod to launch the Gremlin console, as shown below:
 
 ```console
     # Set POD_NAME
