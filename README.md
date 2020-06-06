@@ -30,12 +30,12 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 
 ### ./bampli.sh start|suspend|new|renew|delete|client
 
-- new: create and start new cluster with 4 nodes
-- start: start cluster and activate Dashboard proxy
-- suspend: suspend all cluster nodes nicely
-- renew: delete/purge existing nodes, and recreate cluster
-- delete: delete all nodes, no purge
-- client: launch gremlin client console with bAmpli Graph Schema parameter
+- **new**: create and start new cluster with 4 nodes
+- **start**: start cluster and activate Dashboard proxy
+- **suspend**: suspend all cluster nodes nicely
+- **renew**: delete/purge existing nodes, and recreate cluster
+- **delete**: delete all nodes, no purge
+- **client**: launch gremlin client console with bAmpli Graph Schema parameter
 
 ### Gremlin client
 
