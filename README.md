@@ -57,17 +57,14 @@ The -i parameter allows to select a [schema](https://github.com/bampli/bampli/bl
 
 ### bAmpli Gremlin Console
 
-Save graph:
-
-```console
-    graph.io(IoCore.graphml()).writeGraph("bampli.xml");
-```
-
 Load graph:
-
 ```console
     Graph newGraph = TinkerGraph.open();
     newGraph.io(IoCore.graphml()).readGraph("bampli.xml");
+```
+Save graph:
+```console
+    graph.io(IoCore.graphml()).writeGraph("bampli.xml");
 ```
 
 ## Kubernetes Dashboard
