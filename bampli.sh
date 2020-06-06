@@ -7,6 +7,9 @@ if [ $#=1 ]; then
         echo "multipass $1 $node"
         multipass $1 $node
       done
+      if [ "$1" == "start" ]; then
+        kubectl proxy
+      fi
       exit 0
     ;;
     "new")
