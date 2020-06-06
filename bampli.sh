@@ -29,9 +29,10 @@ if [ $#=1 ]; then
       # --------------------------------------------------------
       # Gremlin client
       #
-      # Allows parameters for initialization:
-      # ./bampli.sh client -i /bampli/gremlin/janus-inmemory.groovy
-      # ./bampli.sh client -i /bampli/gremlin/describe.groovy
+      # Allows parameters for schema initialization:
+      # ./bampli.sh client -i gremlin/bampli.groovy
+      # ./bampli.sh client -i gremlin/janus-inmemory.groovy
+      # ./bampli.sh client -i gremlin/describe.groovy
       # --------------------------------------------------------
       # Set POD_NAME
       export POD_NAME=$(kubectl get pods --namespace default -l "app=janusgraph,release=gremlin" -o jsonpath="{.items[0].metadata.name}")
