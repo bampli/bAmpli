@@ -43,11 +43,11 @@ p_Task = mgmt.makePropertyKey('Task').dataType(String.class).cardinality(Cardina
 
 // Edge
 p_elapsed = mgmt.makePropertyKey('elapsed').dataType(Integer.class).cardinality(Cardinality.SINGLE).make()
-p_ROUTE = mgmt.makePropertyKey('ROUTE').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_TRANSF = mgmt.makePropertyKey('TRANSF').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_DEPLOY = mgmt.makePropertyKey('DEPLOY').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_GET_WIP = mgmt.makePropertyKey('GET_WIP').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_PUT_WIP = mgmt.makePropertyKey('PUT_WIP').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_ROUTE = mgmt.makePropertyKey('route').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_TRANSF = mgmt.makePropertyKey('transf').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_DEPLOY = mgmt.makePropertyKey('deploy').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_GET_WIP = mgmt.makePropertyKey('get_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_PUT_WIP = mgmt.makePropertyKey('put_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 
 // println "\n=================================";[]
 // println "Define Connections";[]
@@ -77,11 +77,11 @@ p_Wip = mgmt.getPropertyKey('Wip')
 p_Stage = mgmt.getPropertyKey('Stage')
 p_Task = mgmt.getPropertyKey('Task')
 p_elapsed = mgmt.getPropertyKey('elapsed')
-p_ROUTE = mgmt.getPropertyKey('ROUTE')
-p_TRANSF = mgmt.getPropertyKey('TRANSF')
-p_DEPLOY = mgmt.getPropertyKey('DEPLOY')
-p_GET_WIP = mgmt.getPropertyKey('GET_WIP')
-p_PUT_WIP = mgmt.getPropertyKey('PUT_WIP')
+p_ROUTE = mgmt.getPropertyKey('route')
+p_TRANSF = mgmt.getPropertyKey('transf')
+p_DEPLOY = mgmt.getPropertyKey('deploy')
+p_GET_WIP = mgmt.getPropertyKey('get_wip')
+p_PUT_WIP = mgmt.getPropertyKey('put_wip')
 
 // p_desc = mgmt.getPropertyKey('desc')
 
