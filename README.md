@@ -70,7 +70,7 @@ Load graph:
     newGraph.io(IoCore.graphml()).readGraph("bampli.xml");
 ```
 
-## Dashboard
+## Kubernetes Dashboard
 
 - Open a new terminal and run proxy:
 
