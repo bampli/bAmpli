@@ -60,7 +60,6 @@ The -i parameter allows to select a [schema](https://github.com/bampli/bampli/bl
 Save graph:
 
 ```console
-    :load /bampli/gremlin/bampli.groovy
     graph.io(IoCore.graphml()).writeGraph("bampli.xml");
 ```
 
