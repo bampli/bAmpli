@@ -55,6 +55,22 @@ This script executes commands to find JanusGraph container, and address its pod 
 ```
 The -i parameter allows to select a [schema](https://github.com/bampli/bampli/blob/master/gremlin/bampli.groovy) to initialize the Gremlin Console.
 
+### bAmpli Gremlin Console
+
+Save graph:
+
+```console
+    :load /bampli/gremlin/bampli.groovy
+    graph.io(IoCore.graphml()).writeGraph("bampli.xml");
+```
+
+Load graph:
+
+```console
+    Graph newGraph = TinkerGraph.open();
+    newGraph.io(IoCore.graphml()).readGraph("bampli.xml");
+```
+
 ## Dashboard
 
 - Open a new terminal and run proxy:
