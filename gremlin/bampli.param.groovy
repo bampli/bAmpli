@@ -9,62 +9,99 @@ println "Creating in-memory bAmpli Graph";[]
 println "=======================================\n";[]
 // Create a new graph instance
 graph = JanusGraphFactory.open('inmemory')
-mgmt = graph.openManagement()
 
 println "\n=================================";[]
-println "Defining labels";[]
+println "Defining labels & edges";[]
 println "=================================\n";[]
+mgmt = graph.openManagement()
 
 // Vertex labels
 Version = mgmt.makeVertexLabel('Version').make()
+p_desc = mgmt.makePropertyKey('desc').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+mgmt.addProperties(Version, p_desc)
+
 Product = mgmt.makeVertexLabel('Product').make()
+p_product = mgmt.makePropertyKey('product').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_desc = mgmt.makePropertyKey('desc').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+mgmt.addProperties(Product, p_product, p_desc)
+
 Wip = mgmt.makeVertexLabel('Wip').make()
+p_wip = mgmt.makePropertyKey('wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_desc = mgmt.makePropertyKey('desc').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+mgmt.addProperties(Wip, p_wip, p_desc)
+
 Stage = mgmt.makeVertexLabel('Stage').make()
+p_stage = mgmt.makePropertyKey('stage').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_desc = mgmt.makePropertyKey('desc').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+mgmt.addProperties(Stage, p_stage, p_desc)
+
 Task = mgmt.makeVertexLabel('Task').make()
+p_task = mgmt.makePropertyKey('task').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_desc = mgmt.makePropertyKey('desc').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+mgmt.addProperties(Task, p_task, p_desc)
 
 // Edge labels and usage
 ROUTE = mgmt.makeEdgeLabel('ROUTE').multiplicity(MULTI).make()
-TRANSF = mgmt.makeEdgeLabel('TRANSF').multiplicity(MULTI).make()
-DEPLOY = mgmt.makeEdgeLabel('DEPLOY').multiplicity(SIMPLE).make()
-GET_WIP = mgmt.makeEdgeLabel('GET_WIP').multiplicity(SIMPLE).make()
-PUT_WIP = mgmt.makeEdgeLabel('PUT_WIP').multiplicity(SIMPLE).make()
-
-// mgmt.commit()
-// mgmt = graph.openManagement()
-
-println "\n=================================";[]
-println "Creating property keys";[]
-println "=================================\n";[]
-
-// Vertex
-p_product = mgmt.makePropertyKey('product').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_wip = mgmt.makePropertyKey('wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_stage = mgmt.makePropertyKey('stage').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_task = mgmt.makePropertyKey('task').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-p_desc = mgmt.makePropertyKey('desc').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-
-// Edge
-p_elapsed = mgmt.makePropertyKey('elapsed').dataType(Integer.class).cardinality(Cardinality.SINGLE).make()
 p_route = mgmt.makePropertyKey('route').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_elapsed = mgmt.makePropertyKey('elapsed').dataType(Integer.class).cardinality(Cardinality.SINGLE).make()
+mgmt.addProperties(ROUTE, p_route, p_elapsed)
+
+TRANSF = mgmt.makeEdgeLabel('TRANSF').multiplicity(MULTI).make()
 p_transf = mgmt.makePropertyKey('transf').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_elapsed = mgmt.makePropertyKey('elapsed').dataType(Integer.class).cardinality(Cardinality.SINGLE).make()
+mgmt.addProperties(DEPLOY, p_transf, p_elapsed)
+
+DEPLOY = mgmt.makeEdgeLabel('DEPLOY').multiplicity(SIMPLE).make()
 p_deploy = mgmt.makePropertyKey('deploy').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_elapsed = mgmt.makePropertyKey('elapsed').dataType(Integer.class).cardinality(Cardinality.SINGLE).make()
+mgmt.addProperties(DEPLOY, p_deploy, p_elapsed)
+
+GET_WIP = mgmt.makeEdgeLabel('GET_WIP').multiplicity(SIMPLE).make()
 p_get_wip = mgmt.makePropertyKey('get_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+p_elapsed = mgmt.makePropertyKey('elapsed').dataType(Integer.class).cardinality(Cardinality.SINGLE).make()
+mgmt.addProperties(GET_WIP, p_get_wip, p_elapsed)
+
+PUT_WIP = mgmt.makeEdgeLabel('PUT_WIP').multiplicity(SIMPLE).make()
 p_put_wip = mgmt.makePropertyKey('put_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-
-// println "\n=================================";[]
-// println "Define Connections";[]
-// println "=================================\n";[]
-
-// mgmt.addConnection(ROUTE, Stage, Stage)
-// mgmt.addConnection(ROUTE, Product, Stage)
-// mgmt.addConnection(ROUTE, Stage, Product)
-// mgmt.addConnection(DEPLOY, Stage, Task)
-// mgmt.addConnection(DEPLOY, Product, Task)
-// mgmt.addConnection(TRANSF, Wip, Wip)
-// mgmt.addConnection(GET_WIP, Task, Wip)
-// mgmt.addConnection(PUT_WIP, Task, Wip)
+p_elapsed = mgmt.makePropertyKey('elapsed').dataType(Integer.class).cardinality(Cardinality.SINGLE).make()
+mgmt.addProperties(PUT_WIP, p_put_wip, p_elapsed)
 
 mgmt.commit()
+// mgmt = graph.openManagement()
+
+// println "\n=================================";[]
+// println "Creating property keys";[]
+// println "=================================\n";[]
+
+// // Vertex
+// p_product = mgmt.makePropertyKey('product').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+// p_wip = mgmt.makePropertyKey('wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+// p_stage = mgmt.makePropertyKey('stage').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+// p_task = mgmt.makePropertyKey('task').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+// p_desc = mgmt.makePropertyKey('desc').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+
+// // Edge
+// p_elapsed = mgmt.makePropertyKey('elapsed').dataType(Integer.class).cardinality(Cardinality.SINGLE).make()
+// p_route = mgmt.makePropertyKey('route').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+// p_transf = mgmt.makePropertyKey('transf').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+// p_deploy = mgmt.makePropertyKey('deploy').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+// p_get_wip = mgmt.makePropertyKey('get_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+// p_put_wip = mgmt.makePropertyKey('put_wip').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+
+// // println "\n=================================";[]
+// // println "Define Connections";[]
+// // println "=================================\n";[]
+
+// // mgmt.addConnection(ROUTE, Stage, Stage)
+// // mgmt.addConnection(ROUTE, Product, Stage)
+// // mgmt.addConnection(ROUTE, Stage, Product)
+// // mgmt.addConnection(DEPLOY, Stage, Task)
+// // mgmt.addConnection(DEPLOY, Product, Task)
+// // mgmt.addConnection(TRANSF, Wip, Wip)
+// // mgmt.addConnection(GET_WIP, Task, Wip)
+// // mgmt.addConnection(PUT_WIP, Task, Wip)
+
+// mgmt.commit()
 
 println "\n=================================";[]
 println "Building index";[]
@@ -152,20 +189,20 @@ mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'putwIndex').status(SchemaStatus.REGISTERED).call()
 println "=================================\n";[]
 
-mgmt.commit()
-mgmt=graph.openManagement()
+// mgmt.commit()
+// mgmt=graph.openManagement()
 
-println "\n=================================";[]
-println "addProperties";[]
-println "=================================\n";[]
-mgmt.addProperties(mgmt.getVertexLabel('Product'), mgmt.getPropertyKey('desc'))
-mgmt.addProperties(mgmt.getVertexLabel('Stage'), mgmt.getPropertyKey('desc'))
-mgmt.addProperties(mgmt.getVertexLabel('Task'), mgmt.getPropertyKey('desc'))
-mgmt.addProperties(mgmt.getVertexLabel('Wip'), mgmt.getPropertyKey('desc'))
-mgmt.addProperties(mgmt.getEdgeLabel('ROUTE'), mgmt.getPropertyKey('elapsed'))
-mgmt.addProperties(mgmt.getEdgeLabel('TRANSF'), mgmt.getPropertyKey('elapsed'))
-mgmt.addProperties(mgmt.getEdgeLabel('GET_WIP'), mgmt.getPropertyKey('elapsed'))
-mgmt.addProperties(mgmt.getEdgeLabel('PUT_WIP'), mgmt.getPropertyKey('elapsed'))
+// println "\n=================================";[]
+// println "addProperties";[]
+// println "=================================\n";[]
+// mgmt.addProperties(mgmt.getVertexLabel('Product'), mgmt.getPropertyKey('desc'))
+// mgmt.addProperties(mgmt.getVertexLabel('Stage'), mgmt.getPropertyKey('desc'))
+// mgmt.addProperties(mgmt.getVertexLabel('Task'), mgmt.getPropertyKey('desc'))
+// mgmt.addProperties(mgmt.getVertexLabel('Wip'), mgmt.getPropertyKey('desc'))
+// mgmt.addProperties(mgmt.getEdgeLabel('ROUTE'), mgmt.getPropertyKey('elapsed'))
+// mgmt.addProperties(mgmt.getEdgeLabel('TRANSF'), mgmt.getPropertyKey('elapsed'))
+// mgmt.addProperties(mgmt.getEdgeLabel('GET_WIP'), mgmt.getPropertyKey('elapsed'))
+// mgmt.addProperties(mgmt.getEdgeLabel('PUT_WIP'), mgmt.getPropertyKey('elapsed'))
 
 mgmt.commit()
 mgmt=graph.openManagement()
