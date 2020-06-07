@@ -99,15 +99,6 @@ idxA = mgmt.buildIndex('putwIndex', Edge.class).addKey(p_put_wip).buildComposite
 
 //idx1 = mgmt.buildIndex('prodIndex', Vertex.class).addKey(prod).unique().buildCompositeIndex()
 
-mgmt.addProperties(mgmt.getVertexLabel('Product'), p_desc)
-mgmt.addProperties(mgmt.getVertexLabel('Stage'), p_desc)
-mgmt.addProperties(mgmt.getVertexLabel('Task'), p_desc)
-mgmt.addProperties(mgmt.getVertexLabel('Wip'), p_desc)
-mgmt.addProperties(mgmt.getEdgeLabel('ROUTE'), p_elapsed)
-mgmt.addProperties(mgmt.getEdgeLabel('TRANSF'), p_elapsed)
-mgmt.addProperties(mgmt.getEdgeLabel('GET_WIP'), p_elapsed)
-mgmt.addProperties(mgmt.getEdgeLabel('PUT_WIP'), p_elapsed)
-
 mgmt.commit()
 
 println "\n=================================";[]
@@ -159,14 +150,29 @@ mgmt.commit()
 println "Waiting for putwIndex to be ready";[]
 mgmt=graph.openManagement()
 mgmt.awaitGraphIndexStatus(graph, 'putwIndex').status(SchemaStatus.REGISTERED).call()
-mgmt.commit()
 println "=================================\n";[]
+
+mgmt.commit()
+mgmt=graph.openManagement()
+
+println "\n=================================";[]
+println "addProperties";[]
+println "=================================\n";[]
+mgmt.addProperties(mgmt.getVertexLabel('Product'), mgmt.getPropertyKey('desc'))
+mgmt.addProperties(mgmt.getVertexLabel('Stage'), mgmt.getPropertyKey('desc'))
+mgmt.addProperties(mgmt.getVertexLabel('Task'), mgmt.getPropertyKey('desc'))
+mgmt.addProperties(mgmt.getVertexLabel('Wip'), mgmt.getPropertyKey('desc'))
+mgmt.addProperties(mgmt.getEdgeLabel('ROUTE'), mgmt.getPropertyKey('elapsed'))
+mgmt.addProperties(mgmt.getEdgeLabel('TRANSF'), mgmt.getPropertyKey('elapsed'))
+mgmt.addProperties(mgmt.getEdgeLabel('GET_WIP'), mgmt.getPropertyKey('elapsed'))
+mgmt.addProperties(mgmt.getEdgeLabel('PUT_WIP'), mgmt.getPropertyKey('elapsed'))
+
+mgmt.commit()
+mgmt=graph.openManagement()
 
 println "\n=================================";[]
 println "Re-indexing";[]
 println "=================================\n";[]
-mgmt=graph.openManagement()
-
 mgmt.awaitGraphIndexStatus(graph, 'prodIndex').call()
 mgmt.updateIndex(mgmt.getGraphIndex('prodIndex'), SchemaAction.REINDEX).get()
 
