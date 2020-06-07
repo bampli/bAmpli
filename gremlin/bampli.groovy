@@ -16,9 +16,9 @@ println "=================================\n";[]
 mgmt = graph.openManagement()
 
 // Vertex labels
-Version = mgmt.makeVertexLabel('Version').make()
+V = mgmt.makeVertexLabel('Version').make()
 p_desc = mgmt.makePropertyKey('desc').dataType(String.class).cardinality(Cardinality.SINGLE).make()
-mgmt.addProperties(Version, p_desc)
+mgmt.addProperties(V, p_desc)
 
 Product = mgmt.makeVertexLabel('Product').make()
 p_product = mgmt.makePropertyKey('product').dataType(String.class).cardinality(Cardinality.SINGLE).make()
