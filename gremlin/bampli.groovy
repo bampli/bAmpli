@@ -74,28 +74,28 @@ println "=================================\n";[]
 graph.tx().rollback()
 mgmt=graph.openManagement()
 
-p_product = mgmt.getPropertyKey('product')
-p_wip = mgmt.getPropertyKey('wip')
-p_stage = mgmt.getPropertyKey('stage')
-p_task = mgmt.getPropertyKey('task')
-p_desc = mgmt.getPropertyKey('desc')
-p_elapsed = mgmt.getPropertyKey('elapsed')
-p_route = mgmt.getPropertyKey('route')
-p_transf = mgmt.getPropertyKey('transf')
-p_deploy = mgmt.getPropertyKey('deploy')
-p_get_wip = mgmt.getPropertyKey('get_wip')
-p_put_wip = mgmt.getPropertyKey('put_wip')
+// p_product = mgmt.getPropertyKey('product')
+// p_wip = mgmt.getPropertyKey('wip')
+// p_stage = mgmt.getPropertyKey('stage')
+// p_task = mgmt.getPropertyKey('task')
+// p_desc = mgmt.getPropertyKey('desc')
+// p_elapsed = mgmt.getPropertyKey('elapsed')
+// p_route = mgmt.getPropertyKey('route')
+// p_transf = mgmt.getPropertyKey('transf')
+// p_deploy = mgmt.getPropertyKey('deploy')
+// p_get_wip = mgmt.getPropertyKey('get_wip')
+// p_put_wip = mgmt.getPropertyKey('put_wip')
 
-idx1 = mgmt.buildIndex('prodIndex', Vertex.class).addKey(p_product).buildCompositeIndex()
-idx2 = mgmt.buildIndex('wipxIndex', Vertex.class).addKey(p_wip).buildCompositeIndex()
-idx3 = mgmt.buildIndex('stagIndex', Vertex.class).addKey(p_stage).buildCompositeIndex()
-idx4 = mgmt.buildIndex('taskIndex', Vertex.class).addKey(p_task).buildCompositeIndex()
-idx5 = mgmt.buildIndex('elapIndex', Edge.class).addKey(p_elapsed).buildCompositeIndex()
-idx6 = mgmt.buildIndex('routIndex', Edge.class).addKey(p_route).buildCompositeIndex()
-idx7 = mgmt.buildIndex('tranIndex', Edge.class).addKey(p_transf).buildCompositeIndex()
-idx8 = mgmt.buildIndex('deplIndex', Edge.class).addKey(p_deploy).buildCompositeIndex()
-idx9 = mgmt.buildIndex('getwIndex', Edge.class).addKey(p_get_wip).buildCompositeIndex()
-idxA = mgmt.buildIndex('putwIndex', Edge.class).addKey(p_put_wip).buildCompositeIndex()
+idx1 = mgmt.buildIndex('prodIndex', Vertex.class).addKey(mgmt.getPropertyKey('product')).buildCompositeIndex()
+idx2 = mgmt.buildIndex('wipxIndex', Vertex.class).addKey(mgmt.getPropertyKey('wip')).buildCompositeIndex()
+idx3 = mgmt.buildIndex('stagIndex', Vertex.class).addKey(mgmt.getPropertyKey('stage')).buildCompositeIndex()
+idx4 = mgmt.buildIndex('taskIndex', Vertex.class).addKey(mgmt.getPropertyKey('task')).buildCompositeIndex()
+idx5 = mgmt.buildIndex('elapIndex', Edge.class).addKey(mgmt.getPropertyKey('elapsed')).buildCompositeIndex()
+idx6 = mgmt.buildIndex('routIndex', Edge.class).addKey(mgmt.getPropertyKey('route')).buildCompositeIndex()
+idx7 = mgmt.buildIndex('tranIndex', Edge.class).addKey(mgmt.getPropertyKey('transf')).buildCompositeIndex()
+idx8 = mgmt.buildIndex('deplIndex', Edge.class).addKey(mgmt.getPropertyKey('deploy')).buildCompositeIndex()
+idx9 = mgmt.buildIndex('getwIndex', Edge.class).addKey(mgmt.getPropertyKey('get_wip')).buildCompositeIndex()
+idxA = mgmt.buildIndex('putwIndex', Edge.class).addKey(mgmt.getPropertyKey('put_wip')).buildCompositeIndex()
 
 //idx1 = mgmt.buildIndex('prodIndex', Vertex.class).addKey(prod).unique().buildCompositeIndex()
 
@@ -153,21 +153,21 @@ mgmt.awaitGraphIndexStatus(graph, 'putwIndex').status(SchemaStatus.REGISTERED).c
 println "=================================\n";[]
 
 mgmt.commit()
-mgmt=graph.openManagement()
+// mgmt=graph.openManagement()
 
-println "\n=================================";[]
-println "addProperties";[]
-println "=================================\n";[]
-mgmt.addProperties(mgmt.getVertexLabel('Product'), mgmt.getPropertyKey('desc'))
-mgmt.addProperties(mgmt.getVertexLabel('Stage'), mgmt.getPropertyKey('desc'))
-mgmt.addProperties(mgmt.getVertexLabel('Task'), mgmt.getPropertyKey('desc'))
-mgmt.addProperties(mgmt.getVertexLabel('Wip'), mgmt.getPropertyKey('desc'))
-mgmt.addProperties(mgmt.getEdgeLabel('ROUTE'), mgmt.getPropertyKey('elapsed'))
-mgmt.addProperties(mgmt.getEdgeLabel('TRANSF'), mgmt.getPropertyKey('elapsed'))
-mgmt.addProperties(mgmt.getEdgeLabel('GET_WIP'), mgmt.getPropertyKey('elapsed'))
-mgmt.addProperties(mgmt.getEdgeLabel('PUT_WIP'), mgmt.getPropertyKey('elapsed'))
+// println "\n=================================";[]
+// println "addProperties";[]
+// println "=================================\n";[]
+// mgmt.addProperties(mgmt.getVertexLabel('Product'), mgmt.getPropertyKey('desc'))
+// mgmt.addProperties(mgmt.getVertexLabel('Stage'), mgmt.getPropertyKey('desc'))
+// mgmt.addProperties(mgmt.getVertexLabel('Task'), mgmt.getPropertyKey('desc'))
+// mgmt.addProperties(mgmt.getVertexLabel('Wip'), mgmt.getPropertyKey('desc'))
+// mgmt.addProperties(mgmt.getEdgeLabel('ROUTE'), mgmt.getPropertyKey('elapsed'))
+// mgmt.addProperties(mgmt.getEdgeLabel('TRANSF'), mgmt.getPropertyKey('elapsed'))
+// mgmt.addProperties(mgmt.getEdgeLabel('GET_WIP'), mgmt.getPropertyKey('elapsed'))
+// mgmt.addProperties(mgmt.getEdgeLabel('PUT_WIP'), mgmt.getPropertyKey('elapsed'))
 
-mgmt.commit()
+// mgmt.commit()
 mgmt=graph.openManagement()
 
 println "\n=================================";[]

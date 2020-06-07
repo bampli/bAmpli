@@ -153,21 +153,21 @@ mgmt.awaitGraphIndexStatus(graph, 'putwIndex').status(SchemaStatus.REGISTERED).c
 println "=================================\n";[]
 
 mgmt.commit()
-mgmt=graph.openManagement()
+// mgmt=graph.openManagement()
 
-println "\n=================================";[]
-println "addProperties";[]
-println "=================================\n";[]
-mgmt.addProperties(mgmt.getVertexLabel('Product'), mgmt.getPropertyKey('desc'))
-mgmt.addProperties(mgmt.getVertexLabel('Stage'), mgmt.getPropertyKey('desc'))
-mgmt.addProperties(mgmt.getVertexLabel('Task'), mgmt.getPropertyKey('desc'))
-mgmt.addProperties(mgmt.getVertexLabel('Wip'), mgmt.getPropertyKey('desc'))
-mgmt.addProperties(mgmt.getEdgeLabel('ROUTE'), mgmt.getPropertyKey('elapsed'))
-mgmt.addProperties(mgmt.getEdgeLabel('TRANSF'), mgmt.getPropertyKey('elapsed'))
-mgmt.addProperties(mgmt.getEdgeLabel('GET_WIP'), mgmt.getPropertyKey('elapsed'))
-mgmt.addProperties(mgmt.getEdgeLabel('PUT_WIP'), mgmt.getPropertyKey('elapsed'))
+// println "\n=================================";[]
+// println "addProperties";[]
+// println "=================================\n";[]
+// mgmt.addProperties(mgmt.getVertexLabel('Product'), mgmt.getPropertyKey('desc'))
+// mgmt.addProperties(mgmt.getVertexLabel('Stage'), mgmt.getPropertyKey('desc'))
+// mgmt.addProperties(mgmt.getVertexLabel('Task'), mgmt.getPropertyKey('desc'))
+// mgmt.addProperties(mgmt.getVertexLabel('Wip'), mgmt.getPropertyKey('desc'))
+// mgmt.addProperties(mgmt.getEdgeLabel('ROUTE'), mgmt.getPropertyKey('elapsed'))
+// mgmt.addProperties(mgmt.getEdgeLabel('TRANSF'), mgmt.getPropertyKey('elapsed'))
+// mgmt.addProperties(mgmt.getEdgeLabel('GET_WIP'), mgmt.getPropertyKey('elapsed'))
+// mgmt.addProperties(mgmt.getEdgeLabel('PUT_WIP'), mgmt.getPropertyKey('elapsed'))
 
-mgmt.commit()
+// mgmt.commit()
 mgmt=graph.openManagement()
 
 println "\n=================================";[]
