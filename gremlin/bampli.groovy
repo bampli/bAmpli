@@ -5,7 +5,7 @@
 //   :load bampli.groovy
 
 println "\n=======================================";[]
-println "Creating in-memory bAmpli Graph";[]
+println "Creating in-memory bAmpli Graph v0.02";[]
 println "=======================================\n";[]
 // Create a new graph instance
 graph = JanusGraphFactory.open('inmemory')
