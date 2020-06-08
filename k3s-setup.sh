@@ -14,7 +14,8 @@ DASHBOARD="https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/dep
 # Create K3s Cluster
 # --------------------------------------------------------
 # VMs on Windows10 Hyper-V
-for node in node1 node2 node3 node4;do
+#for node in node1 node2 node3 node4;do
+for node in node1 node2 node3;do
   multipass launch -c 1 -d 4G -m 2G -n $node
 done
 
@@ -28,7 +29,8 @@ TOKEN=$(multipass exec node1 -- /bin/bash -c "sudo cat /var/lib/rancher/k3s/serv
 export MSYS_NO_PATHCONV=0
 
 # Join worker nodes
-for node in node2 node3 node4;do
+#for node in node2 node3 node4;do
+for node in node2 node3;do
 echo "Starting k3s on $node"
 multipass exec $node -- \
 /bin/bash -c "curl -sfL https://get.k3s.io | K3S_URL=\"https://$IP:6443\" K3S_TOKEN=\"$TOKEN\" sh -"

@@ -3,7 +3,8 @@
 if [ $#=1 ]; then
   case $1 in
     "start"|"suspend"|"delete")
-      for node in node1 node2 node3 node4;do
+#      for node in node1 node2 node3 node4;do
+      for node in node1 node2 node3;do
         echo "multipass $1 $node"
         multipass $1 $node
       done
