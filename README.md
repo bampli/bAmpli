@@ -10,9 +10,9 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 - Kubectl
 - Git
 
-## Launch 4-node K3S cluster
+## Launch 3-node K3S cluster
 
-- Run 4 x single processor 2G memory 4G disk
+- Run 3 x single processor 2G memory 4G disk
 - K3S cluster is launched
 - Add packages to the cluster
 - Kubernetes Dashboard v2.0
@@ -30,7 +30,7 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 
 ### ./bampli.sh start|suspend|new|renew|delete|client
 
-- **new**: create and start new cluster with 4 nodes
+- **new**: create and start new cluster with 3 nodes
 - **start**: start cluster and activate Dashboard proxy
 - **suspend**: suspend all cluster nodes nicely
 - **renew**: delete/purge existing nodes, and recreate cluster
@@ -81,6 +81,12 @@ Load graph:
 Save graph:
 ```console
     graph.io(IoCore.graphml()).writeGraph("bampli.xml");
+```
+
+Remote console:
+```console
+    :remote connect tinkerpop.server conf/remote.yaml
+    :remote console
 ```
 
 ## Kubernetes Dashboard
