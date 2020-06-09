@@ -93,7 +93,7 @@ Remote console:
 
 In order to execute groovy files with bAmpli graph initialization:
 
-- Use Dashboard to start a bash session in the Janusgraph server.
+- Use Dashboard to start a bash session in the Janusgraph server pod.
 
 ![Untitled](https://user-images.githubusercontent.com/86032/84195227-96229b00-aa74-11ea-92c6-f17aa7ca5a26.png)
 
