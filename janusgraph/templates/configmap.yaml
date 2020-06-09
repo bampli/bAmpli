@@ -22,6 +22,7 @@ data:
     port: 8182
     scriptEvaluationTimeout: 30000
     channelizer: org.apache.tinkerpop.gremlin.server.channel.WsAndHttpChannelizer
+    graphManager: org.janusgraph.graphdb.management.JanusGraphManager
     graphs: {
       graph: conf/gremlin-server/janusgraph.properties
     }
