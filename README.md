@@ -91,7 +91,7 @@ Remote console:
 
 ### bAmpli Groovy Commands
 
-In order to execute groovy files with bAmpli graph initialization:
+In order to execute groovy files for bAmpli graph initialization:
 
 - Use Dashboard to start a bash session in the Janusgraph server pod.
 
