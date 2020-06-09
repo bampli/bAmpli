@@ -12,14 +12,14 @@ Launch a K3S cluster on a Windows 10 environment with Hyper-V and multipass.
 
 ## Launch 3-node K3S cluster
 
-- Run 3 x single processor 2G memory 4G disk
+- Run 3 x single-processor 2G memory 4G disk
 - K3S cluster is launched
 - Add packages to the cluster
 - Kubernetes Dashboard v2.0
 - Prometheus
 - JanusGraph
 
-## Get started
+## Get started at Windows 10
 
 ```console
     git clone https://github.com/bampli/bampli.git
@@ -87,6 +87,42 @@ Remote console:
 ```console
     :remote connect tinkerpop.server conf/remote.yaml
     :remote console
+```
+
+### bAmpli Groovy Commands
+
+In order to execute groovy files with bAmpli graph initialization:
+
+- Use Dashboard to start a bash session in the Janusgraph server.
+
+![Untitled](https://user-images.githubusercontent.com/86032/84195227-96229b00-aa74-11ea-92c6-f17aa7ca5a26.png)
+
+- Clone this repo inside Janusgraph container.
+
+```console
+    git clone https://github.com/bampli/bampli.git
+```
+- To enable commands below, apply .bashrc to your user at Windows 10
+
+```console
+    # .bashrc to add some ls aliases
+    alias ll='ls -alF'
+    alias la='ls -A'
+    alias l='ls -CF'
+
+    alias k='kubectl'
+    alias kn='kubectl get nodes'
+    alias kp='kubectl get pods'
+    alias ks='kubectl get services'
+    alias kpa='kubectl get pods --all-namespaces'
+
+    alias cli='./bampli.sh client'
+    alias cli-def='./bampli.sh client -i /bampli/gremlin/default.groovy'
+    alias cli-new='./bampli.sh client -i /bampli/gremlin/bampli.groovy'
+    alias cli-air='./bampli.sh client -i /bampli/gremlin/janus-inmemory.groovy'
+    alias cli-d='./bampli.sh client -i /bampli/gremlin/describe.groovy'
+
+    export KUBECONFIG=k3s.yaml
 ```
 
 ## Kubernetes Dashboard
