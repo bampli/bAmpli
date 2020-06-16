@@ -25,9 +25,11 @@ Launch a single cluster on Windows 10 with Docker.
 
 ## Elassandra
 
-Whether you select to load from Cassandra or Elasticsearch, Elassandra stores data in Cassandra’s table and it is indexed in Elasticsearch. Based on Elassandra [source](https://github.com/strapdata/elassandra) and [image](https://hub.docker.com/r/strapdata/elassandra).
+Based on Elassandra [source](https://github.com/strapdata/elassandra) and [image](https://hub.docker.com/r/strapdata/elassandra).
 
 ### Generate data from Elastic
+
+Whether you select to load from Cassandra or Elasticsearch, Elassandra stores data in Cassandra’s table and it is indexed in Elasticsearch.
 
 ```console
     $ curl -XPUT 'http://localhost:9200/twitter/_doc/1?pretty' -H 'Content-Type: application/json' -d '{
@@ -84,7 +86,6 @@ Whether you select to load from Cassandra or Elasticsearch, Elassandra stores da
 ### Check data from Elastic
 
 ```console
-    jo@CANOAS23 MINGW64 ~
     $ curl "localhost:9200/twitter/_search?q=user:Jimmy&pretty"
     {
     "took" : 10,
@@ -116,7 +117,9 @@ Whether you select to load from Cassandra or Elasticsearch, Elassandra stores da
 ```
 ## Janusgraph via Gremlin console
 
-Use Gremlin console to initialize graph with bampli.groovy. First clone repo inside Janusgraph container as shown in the [kubernetes doc.](./kubernetes.md)
+Based on janusgraph-docker [image](https://github.com/JanusGraph/janusgraph-docker).
+
+Use Gremlin console to initialize graph with bampli.groovy. First clone repo inside Janusgraph container as shown in the [kubernetes doc.](./kubernetes.md).
 
 ```console
     $ docker exec -it elassandra_janusgraph_1 bash
