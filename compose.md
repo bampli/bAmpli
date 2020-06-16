@@ -114,3 +114,74 @@ Whether you select to load from Cassandra or Elasticsearch, Elassandra stores da
     }
     }
 ```
+## Gremlin
+
+Use Gremlin console to initialize graph with bampli.groovy. First clone repo inside Janusgraph container as shown in the [kubernetes doc.](./kubernetes.md)
+
+```console
+    $ docker exec -it elassandra_janusgraph_1 bash
+    root@1072aad331f2:/opt/janusgraph# ./bin/gremlin.sh
+
+            \,,,/
+            (o o)
+    -----oOOo-(3)-oOOo-----
+    SLF4J: Class path contains multiple SLF4J bindings.
+    SLF4J: Found binding in [jar:file:/opt/janusgraph/lib/slf4j-log4j12-1.7.12.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+    SLF4J: Found binding in [jar:file:/opt/janusgraph/lib/logback-classic-1.1.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+    SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+    SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+    plugin activated: tinkerpop.server
+    plugin activated: tinkerpop.tinkergraph
+    19:25:26 WARN  org.apache.hadoop.util.NativeCodeLoader  - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+    plugin activated: tinkerpop.hadoop
+    plugin activated: tinkerpop.spark
+    plugin activated: tinkerpop.utilities
+    plugin activated: janusgraph.imports
+    gremlin> :load /bampli/gremlin/bampli.groovy
+    ==>true
+    ==>true
+    ==>true
+    ==>true
+    ==>true
+
+    =======================================
+    Creating in-memory bAmpli Graph v0.02
+    =======================================
+
+    ==>true
+    ==>standardjanusgraph[inmemory:[127.0.0.1]]
+    ==>org.janusgraph.graphdb.database.management.ManagementSystem@26ca61bf
+
+    ... (big log here)
+
+    =================================
+    Retrieving property keys
+    =================================
+
+    ==>org.janusgraph.graphdb.database.management.ManagementSystem@2d206a71
+    elapsed : class java.lang.Integer SINGLE
+    route   : class java.lang.String SINGLE
+    transf  : class java.lang.String SINGLE
+    deploy  : class java.lang.String SINGLE
+    get_wip : class java.lang.String SINGLE
+    put_wip : class java.lang.String SINGLE
+    product : class java.lang.String SINGLE
+    wip     : class java.lang.String SINGLE
+    stage   : class java.lang.String SINGLE
+    task    : class java.lang.String SINGLE
+    desc    : class java.lang.String SINGLE
+    ==>null
+    ==>true
+    ==>null
+```
+
+Check that graph is loaded and run a traversal to find raw material products.
+
+```console
+    gremlin> graph
+    ==>standardjanusgraph[inmemory:[127.0.0.1]]
+    gremlin> g = graph.traversal()
+    ==>graphtraversalsource[standardjanusgraph[inmemory:[127.0.0.1]], standard]
+    gremlin> g.V().has('stage', 'S3').in().in().values().fold()
+    ==>[P2,P1]
+```
