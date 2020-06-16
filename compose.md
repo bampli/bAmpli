@@ -3,6 +3,12 @@
 
 Launch a single cluster on Windows 10 with Docker. 
 
+Based on:
+
+- Elassandra: [source](https://github.com/strapdata/elassandra) and [image](https://hub.docker.com/r/strapdata/elassandra).
+
+- Janusgraph: [source](https://github.com/JanusGraph/janusgraph-docker) and [image](https://hub.docker.com/r/janusgraph/janusgraph).
+
 ### Pre-requisites
 
 - Docker
@@ -24,8 +30,6 @@ Launch a single cluster on Windows 10 with Docker.
 ```
 
 ## Elassandra
-
-Based on Elassandra [source](https://github.com/strapdata/elassandra) and [image](https://hub.docker.com/r/strapdata/elassandra).
 
 ### Generate data from Elastic
 
@@ -116,8 +120,6 @@ Whether you select to load from Cassandra or Elasticsearch, Elassandra stores da
     }
 ```
 ## Janusgraph via Gremlin console
-
-Based on janusgraph-docker [image](https://github.com/JanusGraph/janusgraph-docker).
 
 Use Gremlin console to initialize graph with bampli.groovy. First clone repo inside Janusgraph container as shown in the [kubernetes doc.](./kubernetes.md).
 
