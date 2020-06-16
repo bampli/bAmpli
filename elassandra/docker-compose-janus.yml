@@ -1,0 +1,66 @@
+version: '2'
+services:
+  janusgraph:
+    image: janusgraph/janusgraph:latest
+    environment:
+      JANUS_PROPS_TEMPLATE: cassandra-es
+      janusgraph.storage.backend: cql
+      janusgraph.storage.hostname: seed_node
+      janusgraph.index.search.hostname: seed_node
+    ports:
+      - "8182:8182"
+    networks:
+      - jce-network
+    # healthcheck:
+    #   test: ["CMD", "bin/gremlin.sh", "-e", "scripts/remote-connect.groovy"]
+    #   interval: 10s
+    #   timeout: 30s
+    #   retries: 3
+  seed_node:
+    image: "strapdata/elassandra:latest"
+    environment:
+      - "JVM_OPTS=-Dcassandra.custom_query_handler_class=org.elassandra.index.ElasticQueryHandler"
+      - "MAX_HEAP_SIZE=1200m"
+      - "HEAP_NEWSIZE=300m"
+      - "CASSANDRA_CGROUP_MEMORY_LIMIT=true"
+      - "DEBUG=true"
+    cap_add:
+      - IPC_LOCK
+    ulimits:
+      memlock: -1
+    mem_limit: 2000m
+    ports:
+      - "9042:9042"
+      - "9200:9200"
+    networks:
+      - jce-network
+  node:
+    image: "strapdata/elassandra:latest"
+    environment:
+      - "JVM_OPTS=-Dcassandra.custom_query_handler_class=org.elassandra.index.ElasticQueryHandler"
+      - "MAX_HEAP_SIZE=1200m"
+      - "HEAP_NEWSIZE=300m"
+      - "CASSANDRA_CGROUP_MEMORY_LIMIT=true"
+      - "CASSANDRA_SEEDS=seed_node"
+      - "DEBUG=true"
+    links:
+      - seed_node
+    cap_add:
+      - IPC_LOCK
+    ulimits:
+      memlock: -1
+    mem_limit: 2000m
+    networks:
+      - jce-network
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:6.8.4
+    environment:
+      - "ELASTICSEARCH_URL=http://seed_node:9200"
+    ports:
+      - "5601:5601"
+    mem_limit: 500m
+    networks:
+      - jce-network
+
+networks:
+  jce-network:
