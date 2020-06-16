@@ -114,7 +114,7 @@ Whether you select to load from Cassandra or Elasticsearch, Elassandra stores da
     }
     }
 ```
-## Gremlin
+## Janusgraph via Gremlin console
 
 Use Gremlin console to initialize graph with bampli.groovy. First clone repo inside Janusgraph container as shown in the [kubernetes doc.](./kubernetes.md)
 
