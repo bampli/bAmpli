@@ -9,7 +9,7 @@ Launch a single cluster with Docker, Janusgrah, Cassandra, Elasticsearch and Kib
 
 - **Janusgraph**: janusgraph-docker [source](https://github.com/JanusGraph/janusgraph-docker) and [image](https://hub.docker.com/r/janusgraph/janusgraph).
 
-- **Kibana**: kibana-oss:6.8.5 [image](https://www.docker.elastic.co/r/kibana/kibana-oss:6.8.5) is compatible with Elasticsearch, check the vulnerability report.
+- **Kibana**: kibana-oss:6.8.4 is compatible with Elasticsearch version.
 
 ### Pre-requisites
 
