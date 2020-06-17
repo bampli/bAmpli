@@ -1,13 +1,13 @@
 # bampli
 ### bAmpli Starter 
 
-Launch a single cluster on Windows 10 with Docker. 
+Launch a single cluster on Windows 10 with Docker, Janusgrah, Cassandra, Elastic and Kibana.
 
-Based on:
+- **Elassandra**: docker-elassandra [source](https://github.com/strapdata/docker-elassandra) and [image](https://hub.docker.com/r/strapdata/elassandra).
 
-- Elassandra: [source](https://github.com/strapdata/elassandra) and [image](https://hub.docker.com/r/strapdata/elassandra).
+- **Janusgraph**: janusgraph-docker [source](https://github.com/JanusGraph/janusgraph-docker) and [image](https://hub.docker.com/r/janusgraph/janusgraph).
 
-- Janusgraph: [source](https://github.com/JanusGraph/janusgraph-docker) and [image](https://hub.docker.com/r/janusgraph/janusgraph).
+- **Kibana**: kibana-oss:6.8.5 [image](https://www.docker.elastic.co/r/kibana/kibana-oss:6.8.5) is compatible with Elasticsearch. Please check the vulnerability report.
 
 ### Pre-requisites
 
@@ -20,13 +20,13 @@ Based on:
 - Run docker-compose up
 - Load respective Docker containers into single cluster
 - Elassandra is Cassandra with integrated Elastic
-- Start a JanusGraph instance with Cassandra and Elasticsearch using the cassandra-es template
+- JanusGraph instance with Cassandra and Elasticsearch using the cassandra-es template
 
 ## Get started at Windows 10
 
 ```console
     git clone https://github.com/bampli/bampli.git
-    docker-compose -f bampli/elassandra/docker-compose-janus.yml up -d    
+    docker-compose -f bampli/elassandra/docker-compose.yml up -d
 ```
 
 ## Elassandra
