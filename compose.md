@@ -1,7 +1,7 @@
 # bampli
 ### bAmpli Starter 
 
-Launch a single cluster with Docker, Janusgrah, Cassandra, Elasticsearch and Kibana.
+Launch a single Docker cluster with Janusgrah, Cassandra, Elasticsearch and Kibana.
 
 ![bAmpli-architecture](https://user-images.githubusercontent.com/86032/84940662-8af3ee80-b0b6-11ea-9aaf-ca43665644fd.png)
 
