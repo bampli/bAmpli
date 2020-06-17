@@ -3,7 +3,7 @@
 
 Launch a single Docker cluster with Janusgrah, Cassandra, Elasticsearch and Kibana.
 
-![bAmpli-architecture](https://user-images.githubusercontent.com/86032/84940662-8af3ee80-b0b6-11ea-9aaf-ca43665644fd.png)
+![bAmpli-architecture-2](https://user-images.githubusercontent.com/86032/84951405-c39bc400-b0c6-11ea-921a-cf3b0d6bac85.png)
 
 - **Elassandra**: docker-elassandra [source](https://github.com/strapdata/docker-elassandra) and [image](https://hub.docker.com/r/strapdata/elassandra).
 
