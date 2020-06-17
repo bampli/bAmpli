@@ -1,7 +1,7 @@
 # bampli
 ### bAmpli Starter 
 
-Launch a single cluster with Docker, Janusgrah, Cassandra, Elastic and Kibana.
+Launch a single cluster with Docker, Janusgrah, Cassandra, Elasticsearch and Kibana.
 
 ![bAmpli-architecture](https://user-images.githubusercontent.com/86032/84940662-8af3ee80-b0b6-11ea-9aaf-ca43665644fd.png)
 
@@ -21,7 +21,7 @@ Launch a single cluster with Docker, Janusgrah, Cassandra, Elastic and Kibana.
 
 - Run docker-compose up
 - Load respective Docker containers into single cluster
-- Elassandra is Cassandra with integrated Elastic
+- Elassandra is Cassandra with integrated Elasticsearch
 - JanusGraph instance with Cassandra and Elasticsearch using the cassandra-es template
 
 ## Get started
