@@ -1,13 +1,15 @@
 # bampli
 ### bAmpli Starter 
 
-Launch a single cluster on Windows 10 with Docker, Janusgrah, Cassandra, Elastic and Kibana.
+Launch a single cluster with Docker, Janusgrah, Cassandra, Elastic and Kibana.
+
+![bAmpli-architecture](https://user-images.githubusercontent.com/86032/84940662-8af3ee80-b0b6-11ea-9aaf-ca43665644fd.png)
 
 - **Elassandra**: docker-elassandra [source](https://github.com/strapdata/docker-elassandra) and [image](https://hub.docker.com/r/strapdata/elassandra).
 
 - **Janusgraph**: janusgraph-docker [source](https://github.com/JanusGraph/janusgraph-docker) and [image](https://hub.docker.com/r/janusgraph/janusgraph).
 
-- **Kibana**: kibana-oss:6.8.5 [image](https://www.docker.elastic.co/r/kibana/kibana-oss:6.8.5) is compatible with Elasticsearch. Please check the vulnerability report.
+- **Kibana**: kibana-oss:6.8.5 [image](https://www.docker.elastic.co/r/kibana/kibana-oss:6.8.5) is compatible with Elasticsearch, check the vulnerability report.
 
 ### Pre-requisites
 
@@ -22,7 +24,7 @@ Launch a single cluster on Windows 10 with Docker, Janusgrah, Cassandra, Elastic
 - Elassandra is Cassandra with integrated Elastic
 - JanusGraph instance with Cassandra and Elasticsearch using the cassandra-es template
 
-## Get started at Windows 10
+## Get started
 
 ```console
     git clone https://github.com/bampli/bampli.git
@@ -30,6 +32,8 @@ Launch a single cluster on Windows 10 with Docker, Janusgrah, Cassandra, Elastic
 ```
 
 ## Elassandra
+
+The advantage mentioned by Dominic's [article](https://opensourceforu.com/2017/07/elassandra-to-leverage-huge-data-stack/), is that Elassandra or Cassandra + Elasticsearch do away the need of multiple clusters; instead of a Cassandra cluster, an Elasticsearch cluster and an ETL processes to replicate and synchronise between each cluster. So, once you load the data into the cluster of Elassandra, you do not have to load data into Cassandra, plus you can search for it directly. 
 
 ### Generate data from Elastic
 
@@ -121,7 +125,7 @@ Whether you select to load from Cassandra or Elasticsearch, Elassandra stores da
 ```
 ## Janusgraph via Gremlin console
 
-Use Gremlin console to initialize graph with bampli.groovy. First clone repo inside Janusgraph container as shown in the [kubernetes doc.](./kubernetes.md).
+Use Gremlin console to initialize graph with bampli.groovy. First clone repo inside Janusgraph container as shown in the [kubernetes doc](./kubernetes.md).
 
 ```console
     $ docker exec -it elassandra_janusgraph_1 bash
