@@ -53,7 +53,7 @@ services:
     networks:
       - jce-network
   kibana:
-    image: docker.elastic.co/kibana/kibana-oss:6.8.5
+    image: docker.elastic.co/kibana/kibana-oss:6.8.4
     environment:
       - "ELASTICSEARCH_URL=http://seed_node:9200"
     ports:
