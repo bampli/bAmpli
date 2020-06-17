@@ -184,7 +184,7 @@ Use Gremlin console to initialize graph with bampli.groovy. First clone repo ins
     ==>null
 ```
 
-Check that graph is loaded and run a traversal to find raw material products.
+Check that [bAmpli Cyclo-Graph v0.2](https://user-images.githubusercontent.com/86032/84040175-aead8b00-a978-11ea-9454-f4f801ce50e4.png) is loaded and a traversal finds raw material products.
 
 ```console
     gremlin> graph
