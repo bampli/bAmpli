@@ -30,3 +30,9 @@ Clone the repo, create an external network and run docker-compose.
 ```
 
 Use browser to enter [DataStax Studio](http://localhost:9091/) and edit connection to the corresponding IPAddress. More details at Luke's post about [DataStax Graph and Studio with Docker Compose](http://www.luketillman.com/datastax-graph-and-studio-with-docker-compose/).
+
+## Gremlin console
+
+```console
+    docker exec -it dse /opt/dse/bin/dse gremlin-console
+```
