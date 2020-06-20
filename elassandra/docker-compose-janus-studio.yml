@@ -1,0 +1,91 @@
+version: '2'
+services:
+  seed:
+    image: "strapdata/elassandra:latest"
+    environment:
+      - "JVM_OPTS=-Dcassandra.custom_query_handler_class=org.elassandra.index.ElasticQueryHandler"
+      - "MAX_HEAP_SIZE=1200m"
+      - "HEAP_NEWSIZE=300m"
+      - "CASSANDRA_CGROUP_MEMORY_LIMIT=true"
+      - "DEBUG=true"
+    cap_add:
+      - IPC_LOCK
+    ulimits:
+      memlock: -1
+    mem_limit: 2000m
+    ports:
+      - "9042:9042"
+      - "9200:9200"
+    networks:
+      - jce-network
+  node:
+    image: "strapdata/elassandra:latest"
+    environment:
+      - "JVM_OPTS=-Dcassandra.custom_query_handler_class=org.elassandra.index.ElasticQueryHandler"
+      - "MAX_HEAP_SIZE=1200m"
+      - "HEAP_NEWSIZE=300m"
+      - "CASSANDRA_CGROUP_MEMORY_LIMIT=true"
+      - "CASSANDRA_SEEDS=seed"
+      - "DEBUG=true"
+    links:
+      - seed
+    cap_add:
+      - IPC_LOCK
+    ulimits:
+      memlock: -1
+    mem_limit: 2000m
+    networks:
+      - jce-network
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:6.8.4
+    environment:
+      - "ELASTICSEARCH_URL=http://seed:9200"
+    depends_on:
+        - seed
+    ports:
+      - "5601:5601"
+    mem_limit: 500m
+    networks:
+      - jce-network
+  janusgraph:
+    image: janusgraph/janusgraph:latest
+    environment:
+      JANUS_PROPS_TEMPLATE: cassandra-es
+      janusgraph.storage.backend: cql
+      janusgraph.storage.hostname: seed
+      janusgraph.index.search.hostname: seed
+    depends_on:
+        - seed
+    ports:
+      - "8182:8182"
+    networks:
+      - jce-network
+    # healthcheck:
+    #   test: ["CMD", "bin/gremlin.sh", "-e", "scripts/remote-connect.groovy"]
+    #   interval: 10s
+    #   timeout: 30s
+    #   retries: 3
+  studio:
+      image: datastax/dse-studio:6.8.0
+      environment:
+        - "DS_LICENSE=accept"
+        - "STUDIO_JVM_ARGS=-Xms1g -Xmx2g -Djava.io.tmpdir=/tmp"
+      links:
+        - seed
+        - janusgraph
+      depends_on:
+        - seed
+        - janusgraph
+      ports:
+        - "9091:9091"
+      volumes:
+      - "./notebooks:/var/lib/datastax-studio"
+      mem_limit: 2000m
+      networks:
+        - jce-network
+
+networks:
+  jce-network:
+
+#$ docker inspect elassandra_dse_1 | FINDSTR "IPAddress"
+# studio for CQL only, no graphs, edit connection to IPAddress

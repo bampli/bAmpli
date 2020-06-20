@@ -132,3 +132,6 @@ dmypy.json
 dashboard.admin-user.*
 dashboard.admin-user-role.*
 k3s.yaml
+.tar
+datastax/data/
+datastax/notebooks/
