@@ -33,6 +33,8 @@ Use browser to enter [DataStax Studio](http://localhost:9091/) and edit connecti
 
 ## Gremlin console
 
+Open a command window to launch the gremlin console
+
 ```console
     docker exec -it dse /opt/dse/bin/dse gremlin-console
 ```
