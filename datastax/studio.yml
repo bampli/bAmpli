@@ -1,0 +1,19 @@
+version: '2'
+networks:
+  graph:
+    external: true
+services:
+  studio:
+    image: datastax/dse-studio:6.8.1
+    container_name: studio
+    environment:
+      - DS_LICENSE=accept
+      - "STUDIO_JVM_ARGS=-Xms2g -Xmx4g -Djava.io.tmpdir=/tmp"
+    depends_on:
+      - seed
+    ports:
+      - 9091:9091
+    volumes:
+    - "./notebooks:/var/lib/datastax-studio"
+    networks:
+      - graph

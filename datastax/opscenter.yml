@@ -1,0 +1,21 @@
+version: '2'
+networks:
+  graph:
+    external: true
+services:
+  opscenter:
+    image: "datastax/dse-opscenter:latest"
+    container_name: opscenter
+    ports:
+      - 8888:8888
+    environment:
+      - DS_LICENSE=accept
+      - "STUDIO_JVM_ARGS=-Xms1g -Xmx2g -Djava.io.tmpdir=/tmp"
+    networks:
+      - graph
+  seed:
+    links:
+      - opscenter
+  node:
+    links:
+      - opscenter
