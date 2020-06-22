@@ -44,6 +44,11 @@ Elegantly automated with [Docker Compose](https://docs.docker.com/compose/), the
 
 - **Studio**: Open a browser and go to http://DOCKER_HOST_IP:9091. Click Manage connection. In host name, enter the DSE IP address. Click Save and Test to check connection.
 
+- **dsbulk**: Open a command window in order to use DataStax Bulk Loader.
+
+Use browser to enter [DataStax Studio](http://localhost:9091/) and edit "connection" to the corresponding IPAddress. More details about external network need at Luke's post [DataStax Graph and Studio with Docker Compose](http://www.luketillman.com/datastax-graph-and-studio-with-docker-compose/).
+
+
 ### 3-Node Setup
 
 ```console
@@ -67,7 +72,19 @@ docker-compose -f docker-compose.yml -f opscenter.yml -f studio.yml up -d --scal
 ```console
 docker-compose -f docker-compose.yml -f opscenter.yml -f studio.yml up -d --scale node=0
 ```
-Use browser to enter [DataStax Studio](http://localhost:9091/) and edit "connection" to the corresponding IPAddress. More details about external network need at Luke's post [DataStax Graph and Studio with Docker Compose](http://www.luketillman.com/datastax-graph-and-studio-with-docker-compose/).
+
+### Single Node Setup with Studio and dsbulk
+
+```console
+docker-compose -f docker-compose.yml -f dsbulk.yml -f studio.yml up -d --scale node=0
+
+docker exec -it dsbulk
+
+cd /
+git clone https://github.com/datastax/graph-book.git
+cd graph-book/data/ch6
+
+```
 
 ## Get started (old)
 

@@ -1,0 +1,12 @@
+version: '2'
+networks:
+  graph:
+    external: true
+services:
+  studio:
+    image: josemottalopes/dsbulk:1.5.0
+    container_name: dsbulk
+    depends_on:
+      - seed
+    networks:
+      - graph
