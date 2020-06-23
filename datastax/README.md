@@ -67,22 +67,20 @@ docker-compose -f docker-compose.yml -f opscenter.yml up -d --scale node=2
 docker-compose -f docker-compose.yml -f opscenter.yml -f studio.yml up -d --scale node=1
 ```
 
-### Single Node Setup with OpsCenter and Studio
+### 2-Node Setup with Studio
 
 ```console
-docker-compose -f docker-compose.yml -f opscenter.yml -f studio.yml up -d --scale node=0
+docker-compose -f docker-compose.yml -f studio.yml up -d
 ```
 
-### Single Node Setup with Studio and dsbulk
+### DataStax Bulk Loader
 
 ```console
-docker-compose -f docker-compose.yml -f dsbulk.yml -f studio.yml up -d --scale node=0
+docker-compose -f dsbulk.yml 
 
 docker exec -it dsbulk
 
-cd /
-git clone https://github.com/datastax/graph-book.git
-cd graph-book/data/ch6
+cd /home/graph-book/data/ch6
 
 ```
 

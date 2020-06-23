@@ -33,7 +33,5 @@ services:
     - IPC_LOCK
     ulimits:
       memlock: -1
-    ports:
-    - "9042:9042"
     networks:
       - graph
