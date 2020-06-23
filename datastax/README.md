@@ -76,11 +76,14 @@ docker-compose -f docker-compose.yml -f studio.yml up -d
 ### DataStax Bulk Loader
 
 ```console
-docker-compose -f dsbulk.yml 
-
-docker exec -it dsbulk
+docker run -it --network graph josemottalopes/dsbulk:1.5.0
 
 cd /home/graph-book/data/ch6
+
+dsbulk load -h 172.18.0.2 -k trees_dev -t Sensor -url Sensor.csv
+dsbulk load -h 172.18.0.2 -k trees_dev -t Tower -url Tower.csv
+dsbulk load -h 172.18.0.2 -k trees_dev -t Sensor__send__Sensor -url Sensor__send__Sensor.csv
+dsbulk load -h 172.18.0.2 -k trees_dev -t Sensor__send__Tower -url Sensor__send__Tower.csv
 
 ```
 

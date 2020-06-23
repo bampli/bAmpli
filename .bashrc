@@ -16,6 +16,7 @@ alias cli-air='./bampli.sh client -i /bampli/gremlin/janus-inmemory.groovy'
 alias cli-d='./bampli.sh client -i /bampli/gremlin/describe.groovy'
 
 alias ej='docker-compose -f elassandra/docker-compose.yml'
-alias ds='docker-compose -f datastax/docker-compose.yml'
+alias ds='docker-compose -f docker-compose.yml -f studio.yml'
+alias db='docker run -it --network graph josemottalopes/dsbulk:1.5.0'
 
 export KUBECONFIG=k3s.yaml
