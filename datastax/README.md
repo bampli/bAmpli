@@ -49,28 +49,22 @@ Elegantly automated with [Docker Compose](https://docs.docker.com/compose/), the
 Use browser to enter [DataStax Studio](http://localhost:9091/) and edit "connection" to the corresponding IPAddress. More details about external network need at Luke's post [DataStax Graph and Studio with Docker Compose](http://www.luketillman.com/datastax-graph-and-studio-with-docker-compose/).
 
 
+### 2-Node Setup with Studio
+
+```console
+docker-compose -f docker-compose.yml -f studio.yml up -d
+```
+
 ### 3-Node Setup
 
 ```console
 docker-compose  -f docker-compose.yml up -d --scale node=2
 ```
 
-### 3-Node Setup with -f opscenter.yml 
-
-```console
-docker-compose -f docker-compose.yml -f opscenter.yml up -d --scale node=2
-```
-
 ### 2-Node Setup with OpsCenter and Studio
 
 ```console
 docker-compose -f docker-compose.yml -f opscenter.yml -f studio.yml up -d --scale node=1
-```
-
-### 2-Node Setup with Studio
-
-```console
-docker-compose -f docker-compose.yml -f studio.yml up -d
 ```
 
 ### DataStax Bulk Loader
