@@ -10,7 +10,7 @@ services:
       - 8888:8888
     environment:
       - DS_LICENSE=accept
-      - "STUDIO_JVM_ARGS=-Xms1g -Xmx2g -Djava.io.tmpdir=/tmp"
+      # - "STUDIO_JVM_ARGS=-Xms1g -Xmx2g -Djava.io.tmpdir=/tmp"
     networks:
       - graph
   seed:

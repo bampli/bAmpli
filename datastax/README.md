@@ -78,7 +78,29 @@ dsbulk load -h 172.18.0.2 -k trees_dev -t Sensor -url Sensor.csv
 dsbulk load -h 172.18.0.2 -k trees_dev -t Tower -url Tower.csv
 dsbulk load -h 172.18.0.2 -k trees_dev -t Sensor__send__Sensor -url Sensor__send__Sensor.csv
 dsbulk load -h 172.18.0.2 -k trees_dev -t Sensor__send__Tower -url Sensor__send__Tower.csv
+```
 
+#### Example
+
+```console
+$ docker run -it --network graph josemottalopes/dsbulk:1.5.0
+dsbulk@ad8fad005755:~$ cd /home/graph-book/data/ch6
+dsbulk@ad8fad005755:/home/graph-book/data/ch6$ dsbulk load -h 172.18.0.2 -k trees_dev -t Sensor -url Sensor.csv
+Operation directory: /home/graph-book/data/ch6/logs/LOAD_20200623-225035-213056
+Provided keyspace is a graph; instead of schema.keyspace and schema.table, please use graph-specific options such as schema.graph, schema.vertex, schema.edge, schema.from and schema.to.
+total | failed | vertices/s | p50ms |  p99ms | p999ms | batches
+  279 |      0 |        188 | 42.02 | 187.70 | 228.59 |    1.00
+Operation LOAD_20200623-225035-213056 completed successfully in 1 seconds.
+Last processed positions can be found in positions.txt
+```
+
+### Graph-specific
+
+```console
+dsbulk load -url /path/to/Tower.csv
+            -g trees_dev
+            -v Tower
+            -header true
 ```
 
 ## Get started (old)

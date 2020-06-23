@@ -8,7 +8,7 @@ services:
     container_name: studio
     environment:
       - DS_LICENSE=accept
-      - "STUDIO_JVM_ARGS=-Xms2g -Xmx4g -Djava.io.tmpdir=/tmp"
+      # - "STUDIO_JVM_ARGS=-Xms2g -Xmx4g -Djava.io.tmpdir=/tmp"
     depends_on:
       - seed
     ports:
