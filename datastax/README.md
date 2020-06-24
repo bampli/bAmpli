@@ -101,6 +101,13 @@ dsbulk load -url /path/to/Tower.csv
             -g trees_dev
             -v Tower
             -header true
+
+dsbulk load -url /path/to/Transactions.csv
+            -g trees_dev
+            -e send
+            -from Sensor
+            -to Sensor
+            -header true
 ```
 
 ## Get started (old)
