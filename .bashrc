@@ -20,4 +20,6 @@ alias dsu='docker-compose -f datastax/docker-compose.yml -f datastax/studio.yml 
 alias dsd='docker-compose -f datastax/docker-compose.yml -f datastax/studio.yml down'
 alias di='docker inspect seed | FINDSTR "IPAddress"'
 
+alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}"'
+
 export KUBECONFIG=k3s.yaml
