@@ -49,10 +49,10 @@ Elegantly automated with [Docker Compose](https://docs.docker.com/compose/), the
 Use browser to enter [DataStax Studio](http://localhost:9091/) and edit "connection" to the corresponding IPAddress. More details about external network need at Luke's post [DataStax Graph and Studio with Docker Compose](http://www.luketillman.com/datastax-graph-and-studio-with-docker-compose/).
 
 
-### 2-Node Setup with Studio
+### 1-Node Setup with Studio
 
 ```console
-docker-compose -f docker-compose.yml -f studio.yml up -d
+docker-compose -f docker-compose.yml -f studio.yml up -d --scale node=0
 ```
 
 ### 3-Node Setup
@@ -160,5 +160,5 @@ Use browser to enter [DataStax Studio](http://localhost:9091/) and edit connecti
 Open a command window to launch the gremlin console
 
 ```console
-    docker exec -it dse /opt/dse/bin/dse gremlin-console
+    docker exec -it seed /opt/dse/bin/dse gremlin-console
 ```

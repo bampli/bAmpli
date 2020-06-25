@@ -6,7 +6,7 @@ services:
     container_name: seed
     environment:
       - DS_LICENSE=accept
-      # - "STUDIO_JVM_ARGS=-Xms2g -Xmx4g -Djava.io.tmpdir=/tmp"
+      - "STUDIO_JVM_ARGS=-Xms2g -Xmx4g -Djava.io.tmpdir=/tmp"
     # Allow DSE to lock memory with mlock
     cap_add:
     - IPC_LOCK
@@ -24,7 +24,7 @@ services:
     container_name: node
     environment:
       - DS_LICENSE=accept
-      # - "STUDIO_JVM_ARGS=-Xms2g -Xmx4g -Djava.io.tmpdir=/tmp"
+      - "STUDIO_JVM_ARGS=-Xms2g -Xmx4g -Djava.io.tmpdir=/tmp"
       - SEEDS=seed
     links:
       - seed
