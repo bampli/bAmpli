@@ -34,19 +34,18 @@ Elegantly automated with [Docker Compose](https://docs.docker.com/compose/), the
 
 ```
 
-- Get the DSE container IP address on the host running the DSE container:
+- Get the DSE server IP address:
 
 ```console
     docker inspect seed | grep '"IPAddress":'
 ```
-
-- **OpsCenter**: Open a browser and go to http://DOCKER_HOST_IP:8888. Click Manage existing cluster. In host name, enter the DSE IP address. More details at [docs](https://docs.datastax.com/en/docker/doc/docker/docker68/dockerOpscenter.html).
-
-- **Studio**: Open a browser and go to http://DOCKER_HOST_IP:9091. Click Manage connection. In host name, enter the DSE IP address. Click Save and Test to check connection.
-
-- **dsbulk**: Open a command window in order to use DataStax Bulk Loader.
-
 Use browser to enter [DataStax Studio](http://localhost:9091/) and edit "connection" to the corresponding IPAddress. More details about external network need at Luke's post [DataStax Graph and Studio with Docker Compose](http://www.luketillman.com/datastax-graph-and-studio-with-docker-compose/).
+
+- **Studio**: Open a browser and go to http://DOCKER_HOST_IP:9091. Click Manage connection, edit hostname, enter the DSE IP address. Click Save and Test to check connection.
+
+- **dsbulk**: Open a command window in order to use DataStax Bulk Loader as shown below.
+
+- **OpsCenter**: (TODO: not running, connection error) Open a browser and go to http://DOCKER_HOST_IP:8888. Click Manage existing cluster. In host name, enter the DSE IP address. More details at [docs](https://docs.datastax.com/en/docker/doc/docker/docker68/dockerOpscenter.html).
 
 
 ### 1-Node Setup with Studio
@@ -142,6 +141,14 @@ Last processed positions can be found in positions.txt
 
 ```
 
+## Gremlin console
+
+Open a command window to launch the gremlin console
+
+```console
+    docker exec -it seed /opt/dse/bin/dse gremlin-console
+```
+
 ## Get started (old)
 
 Clone the repo, create an external network and run docker-compose.
@@ -154,11 +161,3 @@ Clone the repo, create an external network and run docker-compose.
 ```
 
 Use browser to enter [DataStax Studio](http://localhost:9091/) and edit connection to the corresponding IPAddress. More details at Luke's post about [DataStax Graph and Studio with Docker Compose](http://www.luketillman.com/datastax-graph-and-studio-with-docker-compose/).
-
-## Gremlin console
-
-Open a command window to launch the gremlin console
-
-```console
-    docker exec -it seed /opt/dse/bin/dse gremlin-console
-```
