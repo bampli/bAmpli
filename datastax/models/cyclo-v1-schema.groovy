@@ -1,3 +1,5 @@
+// cyclo-v1-schema
+
 // Schema
 schema.vertexLabel('Stage').
        ifNotExists().
