@@ -27,4 +27,4 @@ alias hp='docker run --interactive --tty --rm --user $UID --volume $(pwd):/app h
 alias noconv='export MSYS_NO_PATHCONV=1'
 alias noconv0='export MSYS_NO_PATHCONV=0'
 
-export KUBECONFIG=k3s.yaml
+#export KUBECONFIG=k3s.yaml

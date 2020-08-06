@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: astra-backend
+spec:
+  containers:
+  - name: astra-backend
+    image: localhost:5000/astra-backend:my-image        
+    ports:
+        - containerPort: 5555
+        - containerPort: 8080
+    envFrom:
+    - configMapRef:
+        name: env-config
