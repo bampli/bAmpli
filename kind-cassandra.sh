@@ -86,3 +86,16 @@ if [ "${kind_network}" != "bridge" ]; then
     docker network connect "${kind_network}" "${reg_name}" || true
   fi
 fi
+
+# Load setup from DataStax
+# https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week6-App-in-k8s
+kubectl create ns cass-operator
+kubectl -n cass-operator apply -f kind-cassandra/02-storageclass-kind.yaml
+kubectl -n cass-operator apply -f kind-cassandra/03-install-cass-operator-v1.3.yaml
+sleep 5
+kubectl -n cass-operator apply -f kind-cassandra/04-cassandra-cluster-1nodes.yaml
+
+# Cleaning Up
+# kubectl delete ns cass-operator
+# kind delete cluster --name=kind-cassandra
+# kind delete cluster --name=kind-registry
