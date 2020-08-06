@@ -1,6 +1,17 @@
 #!/bin/sh
 # Adapted to bAmpli from:
+# https://github.com/tilt-dev/kind-local
 # https://github.com/tilt-dev/kind-local/blob/master/kind-with-registry.sh
+
+# Try pushing an image.
+# docker tag alpine localhost:5000/alpine
+# docker push localhost:5000/alpine
+
+# TODO Cleaning Up
+# kubectl delete ns cass-operator
+# kind delete cluster --name=kind-cassandra
+# kind delete cluster --name=kind-registry
+
 # Adapted from:
 # https://github.com/kubernetes-sigs/kind/commits/master/site/static/examples/kind-with-registry.sh
 #
@@ -26,7 +37,7 @@ KIND_CLUSTER_NAME="${KIND_CLUSTER_NAME:-kind-cassandra}"
 kind_version=$(kind version)
 kind_network='kind'
 reg_name='kind-registry'
-reg_port='5000'
+reg_port='5555'
 case "${kind_version}" in
   "kind v0.7."* | "kind v0.6."* | "kind v0.5."*)
     kind_network='bridge'
@@ -94,8 +105,3 @@ kubectl -n cass-operator apply -f kind-cassandra/02-storageclass-kind.yaml
 kubectl -n cass-operator apply -f kind-cassandra/03-install-cass-operator-v1.3.yaml
 sleep 5
 kubectl -n cass-operator apply -f kind-cassandra/04-cassandra-cluster-1nodes.yaml
-
-# Cleaning Up
-# kubectl delete ns cass-operator
-# kind delete cluster --name=kind-cassandra
-# kind delete cluster --name=kind-registry
