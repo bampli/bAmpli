@@ -37,7 +37,7 @@ KIND_CLUSTER_NAME="${KIND_CLUSTER_NAME:-kind-cassandra}"
 kind_version=$(kind version)
 kind_network='kind'
 reg_name='kind-registry'
-reg_port='5555'
+reg_port='8888'
 case "${kind_version}" in
   "kind v0.7."* | "kind v0.6."* | "kind v0.5."*)
     kind_network='bridge'
