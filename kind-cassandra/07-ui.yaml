@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: astra-ui
-    image: astra-ui:my-image
+    image: localhost:8888/astra-ui:my-image
     envFrom:
     - configMapRef:
         name: env-config

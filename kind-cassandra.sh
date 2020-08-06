@@ -4,8 +4,8 @@
 # https://github.com/tilt-dev/kind-local/blob/master/kind-with-registry.sh
 
 # Try pushing an image.
-# docker tag alpine localhost:5000/alpine
-# docker push localhost:5000/alpine
+# docker tag alpine localhost:8888/alpine
+# docker push localhost:8888/alpine
 
 # TODO Cleaning Up
 # kubectl delete ns cass-operator
@@ -98,7 +98,7 @@ if [ "${kind_network}" != "bridge" ]; then
   fi
 fi
 
-# Load setup from DataStax
+# Load DataStax Cassandra setup
 # https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week6-App-in-k8s
 kubectl create ns cass-operator
 kubectl -n cass-operator apply -f kind-cassandra/02-storageclass-kind.yaml
